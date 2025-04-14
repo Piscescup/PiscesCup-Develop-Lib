@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "pc_develop_lib",
+	"version": "${version}",
+	"name": "PiscesCup Develop Lib",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/pc_develop_lib/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"cn.edu.jlu.renyt1621.PiscesCupDevelopLib"
+		],
+		"fabric-datagen": [
+			"cn.edu.jlu.renyt1621.PiscesCupDevelopLibDataGenerator"
+		]
+	},
+	"mixins": [
+		"pc_develop_lib.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.12",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
