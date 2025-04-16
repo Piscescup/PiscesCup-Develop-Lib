@@ -2,9 +2,7 @@ package cn.edu.jlu.renyt1621.deprecated.annotations.scanners.datagen.lang;
 
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author REN YuanTong
@@ -13,6 +11,7 @@ import java.util.Map;
  * @Time 11:19
  */
 public final class LangMap {
+    // private List<Language> enableLanguages;
     private final EnumMap<Language, Map<Object, String>> LANG_MAP = new EnumMap<>(Language.class);
 
     private LangMap() {
@@ -29,6 +28,15 @@ public final class LangMap {
     public static LangMap instance() {
         return INSTANCE;
     }
+    //
+    // public LangMap enableLanguages(Language... langs) {
+    //     this.enableLanguages = Arrays.stream(langs).toList();
+    //     return INSTANCE;
+    // }
+    //
+    // public void enableLanguages(List<Language> langs) {
+    //     this.enableLanguages = langs;
+    // }
 
     public void put(Language lang, Object thing, String value) {
           LANG_MAP.get(lang).put(thing, value);
