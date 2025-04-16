@@ -5,11 +5,16 @@ import cn.edu.jlu.renyt1621.reg.PCRegister;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.MapColor;
+import net.minecraft.block.PillarBlock;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
 
 import java.util.function.Function;
 
@@ -179,5 +184,24 @@ public class PCBlockRegister
         LangMap.instance().put(lang, this.t, value);
 
         return this;
+    }
+
+
+    /**
+     * <p>
+     *     Create the settings of the log block.
+     * </p>
+     * @param topMapColor The top and the bottom map color of the log block.
+     * @param sideMapColor The side map color of the log block.
+     * @param sounds The sound of the log block.
+     * @return The settings.
+     */
+    public static AbstractBlock.Settings createLogSettings(MapColor topMapColor, MapColor sideMapColor, BlockSoundGroup sounds) {
+        return AbstractBlock.Settings.create()
+            .mapColor(state -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
+            .instrument(NoteBlockInstrument.BASS)
+            .strength(2.0F)
+            .sounds(sounds)
+            .burnable();
     }
 }
