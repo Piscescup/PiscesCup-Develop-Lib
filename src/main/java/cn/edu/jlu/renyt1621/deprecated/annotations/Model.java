@@ -8,6 +8,8 @@ package cn.edu.jlu.renyt1621.deprecated.annotations;
  * @Date 2025-04-09
  * @Time 11:56
  */
+
+@Deprecated
 public @interface Model {
 
 }

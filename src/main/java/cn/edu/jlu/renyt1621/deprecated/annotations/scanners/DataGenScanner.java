@@ -10,6 +10,7 @@ import java.lang.annotation.Annotation;
  * @Date 2025-04-12
  * @Time 01:18
  */
+@Deprecated
 public interface DataGenScanner<A extends Annotation>
     extends Scanner<A>
 {

@@ -10,6 +10,7 @@ import cn.edu.jlu.renyt1621.deprecated.annotations.scanners.datagen.lang.LangSca
  * @Date 2025-04-12
  * @Time 15:04
  */
+@Deprecated
 public class LangScannerDispatcher
     extends ScannersDispatcher<DataGenScanner<Langs>>
 {

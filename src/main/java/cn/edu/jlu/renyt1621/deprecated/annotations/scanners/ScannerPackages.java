@@ -9,6 +9,7 @@ import java.lang.annotation.RetentionPolicy;
  * @Date 2025-04-12
  */
 @Retention(RetentionPolicy.RUNTIME)
+@Deprecated
 public @interface ScannerPackages {
 
     String[] value();

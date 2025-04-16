@@ -18,10 +18,11 @@ import java.util.Arrays;
 @ScannerPackages({
     "cn.edu.jlu.renyt1621.tests"
 })
+@Deprecated
 public class LangScanner
     implements DataGenScanner<Langs>
 {
-    private final LangMap LANGS_MAP = LangMap.instance();
+    private final PCDLLanguageProvider.LangMap LANGS_MAP = PCDLLanguageProvider.LangMap.instance();
 
 
     /**

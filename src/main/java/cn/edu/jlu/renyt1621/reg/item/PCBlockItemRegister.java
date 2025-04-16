@@ -1,8 +1,10 @@
 package cn.edu.jlu.renyt1621.reg.item;
 
+import cn.edu.jlu.renyt1621.datagen.models.maps.PCItemModelMap;
 import cn.edu.jlu.renyt1621.reg.PCRegister;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.block.Block;
+import net.minecraft.client.data.Model;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -100,6 +102,11 @@ public class PCBlockItemRegister
         return this;
     }
 
+    public PCBlockItemRegister model(Model model) {
+        PCItemModelMap.instance().put(this.t, model);
+        return this;
+    }
+
     /**
      * <p>
      *     Registers the block item and returns the registered item instance.
@@ -135,5 +142,13 @@ public class PCBlockItemRegister
             "You shouldn't try to translate 'Block Item': %s by the method 'translate(Language, String)' in the class 'PCBlockItemRegister'"
                 .formatted(this.t.getTranslationKey())
         );
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    protected PCBlockItemRegister self() {
+        return this;
     }
 }

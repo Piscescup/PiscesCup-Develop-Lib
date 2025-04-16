@@ -7,6 +7,7 @@ import cn.edu.jlu.renyt1621.utils.constant.Language;
  * @Description
  * @Date 2025-04-09
  */
+@Deprecated
 public @interface LangTranslation {
     Language lang() default Language.EN_US;
 

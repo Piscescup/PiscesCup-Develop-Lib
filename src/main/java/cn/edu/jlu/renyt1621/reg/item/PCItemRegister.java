@@ -1,8 +1,10 @@
 package cn.edu.jlu.renyt1621.reg.item;
 
-import cn.edu.jlu.renyt1621.deprecated.annotations.scanners.datagen.lang.LangMap;
+import cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider;
+import cn.edu.jlu.renyt1621.datagen.models.maps.PCItemModelMap;
 import cn.edu.jlu.renyt1621.reg.PCRegister;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
+import net.minecraft.client.data.Model;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -141,6 +143,13 @@ public class PCItemRegister
         return this;
     }
 
+
+    public PCItemRegister model(Model model) {
+        checkNotNull("model(Model)");
+        PCItemModelMap.instance().put(this.t, model);
+        return this;
+    }
+
     /**
      * <p>
      * Translate the {@code Item} to the language.
@@ -162,7 +171,12 @@ public class PCItemRegister
     @Override
     public PCItemRegister translate(Language lang, String value) {
         checkNotNull("translate(Language, String)");
-        LangMap.instance().put(lang, this.t.getTranslationKey(), value);
+        PCDLLanguageProvider.LangMap.instance().put(lang, this.t.getTranslationKey(), value);
+        return this;
+    }
+
+    @Override
+    protected PCItemRegister self() {
         return this;
     }
 }

@@ -11,10 +11,14 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.stat.StatType;
+import net.minecraft.text.TextContent;
+import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Identifier;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -49,8 +53,16 @@ public class PCDLLanguageProvider
                 else if ( o instanceof EntityType<?> entityType)
                     translationBuilder.add(entityType, s);
                 else if ( o instanceof ItemGroup itemGroup){
-                    // RegistryKeys.ITEM_GROUP.
-                    // RegistryKey.of(, itemGroupBuilder.)
+                    TextContent content = itemGroup.getDisplayName().getContent();
+
+                    if ( content instanceof TranslatableTextContent translatableTextContent) {
+                        translationBuilder.add(translatableTextContent.getKey(), s);
+                    } else {
+                        throw new UnsupportedOperationException(
+                            "Cannot add language entry for ItemGroup (%s) as the display name is not translatable."
+                                .formatted(itemGroup.getDisplayName().getString())
+                        );
+                    }
                 }
                 else if ( o instanceof StatType<?> statType)
                     translationBuilder.add(statType, s);
@@ -71,6 +83,8 @@ public class PCDLLanguageProvider
             }
         );
     }
+
+
 
     public static class Builder {
         private FabricDataOutput dataOutput;
@@ -114,5 +128,61 @@ public class PCDLLanguageProvider
             return new PCDLLanguageProvider(this);
         }
 
+    }
+
+    /**
+     * @author REN YuanTong
+     * @Description
+     * @Date 2025-04-12
+     * @Time 11:19
+     */
+    public static final class LangMap {
+        // private List<Language> enableLanguages;
+        private final EnumMap<Language, Map<Object, String>> LANG_MAP = new EnumMap<>(Language.class);
+
+        private LangMap() {
+            if (INSTANCE != null)
+                throw new IllegalStateException("LangMap is a singleton");
+
+            for (Language lang : Language.values()) {
+                LANG_MAP.put(lang, new HashMap<>());
+            }
+        }
+
+        private static final LangMap INSTANCE = new LangMap();
+
+        public static LangMap instance() {
+            return INSTANCE;
+        }
+        //
+        // public LangMap enableLanguages(Language... langs) {
+        //     this.enableLanguages = Arrays.stream(langs).toList();
+        //     return INSTANCE;
+        // }
+        //
+        // public void enableLanguages(List<Language> langs) {
+        //     this.enableLanguages = langs;
+        // }
+
+        public void put(Language lang, Object thing, String value) {
+              LANG_MAP.get(lang).put(thing, value);
+        }
+
+        public void put(Language lang, Map<Object, String> langMap) {
+            LANG_MAP.get(lang).putAll(langMap);
+        }
+
+
+        public void put(Language lang, String key, String value) {
+                LANG_MAP.get(lang).put(key, value);
+        }
+
+        public Map<Object, String> get(Language lang) {
+            return LANG_MAP.getOrDefault(lang, new HashMap<>());
+        }
+
+        public Map<Language, Map<Object, String>> get() {
+            return LANG_MAP;
+        }
     }
 }

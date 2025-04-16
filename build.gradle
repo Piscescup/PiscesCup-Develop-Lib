@@ -35,8 +35,6 @@ dependencies {
 	testImplementation "org.junit.jupiter:junit-jupiter:5.5.2"
 	include(implementation("org.reflections:reflections:0.10.2"))
 	include(implementation("io.github.classgraph:classgraph:4.8.179"))
-
-
 }
 
 processResources {

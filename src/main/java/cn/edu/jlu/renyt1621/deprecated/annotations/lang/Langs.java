@@ -14,6 +14,7 @@ import java.lang.annotation.Target;
 @TargetType(Object.class)
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
+@Deprecated
 public @interface Langs {
     LangTranslation[] value();
 }

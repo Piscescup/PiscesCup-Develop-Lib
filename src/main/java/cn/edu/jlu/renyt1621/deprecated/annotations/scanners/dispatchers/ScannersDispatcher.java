@@ -15,6 +15,7 @@ import java.util.*;
  * @Date 2025-04-12
  * @Time 14:59
  */
+@Deprecated
 public abstract class ScannersDispatcher<S extends Scanner<? extends Annotation>> {
     protected List<S> scanners = new ArrayList<>();
 

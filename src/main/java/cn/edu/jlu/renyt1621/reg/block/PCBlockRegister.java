@@ -1,15 +1,22 @@
 package cn.edu.jlu.renyt1621.reg.block;
 
-import cn.edu.jlu.renyt1621.deprecated.annotations.scanners.datagen.lang.LangMap;
+import cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider;
 import cn.edu.jlu.renyt1621.reg.PCRegister;
+import cn.edu.jlu.renyt1621.reg.item.PCBlockItemRegister;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.MapColor;
+import net.minecraft.block.PillarBlock;
+import net.minecraft.block.enums.NoteBlockInstrument;
+import net.minecraft.client.data.Model;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
 
 import java.util.function.Function;
 
@@ -140,6 +147,10 @@ public class PCBlockRegister
         return this;
     }
 
+    public PCBlockRegister model(Model model) {
+        return this;
+    }
+
     /**
      * <p>
      *     Register the block, and return the registered block.
@@ -176,8 +187,33 @@ public class PCBlockRegister
     public PCBlockRegister translate(Language lang, String value) {
         checkNotNull("translate(Language, String)");
 
-        LangMap.instance().put(lang, this.t, value);
+        PCDLLanguageProvider.LangMap.instance().put(lang, this.t, value);
 
         return this;
+    }
+
+
+    @Override
+    protected PCBlockRegister self() {
+        return this;
+    }
+
+
+    /**
+     * <p>
+     *     Create the settings of the log block.
+     * </p>
+     * @param topMapColor The top and the bottom map color of the log block.
+     * @param sideMapColor The side map color of the log block.
+     * @param sounds The sound of the log block.
+     * @return The settings.
+     */
+    public static AbstractBlock.Settings createLogSettings(MapColor topMapColor, MapColor sideMapColor, BlockSoundGroup sounds) {
+        return AbstractBlock.Settings.create()
+            .mapColor(state -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor)
+            .instrument(NoteBlockInstrument.BASS)
+            .strength(2.0F)
+            .sounds(sounds)
+            .burnable();
     }
 }

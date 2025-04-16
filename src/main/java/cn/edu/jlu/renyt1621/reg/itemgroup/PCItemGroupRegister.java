@@ -1,13 +1,11 @@
 package cn.edu.jlu.renyt1621.reg.itemgroup;
 
-import cn.edu.jlu.renyt1621.deprecated.annotations.scanners.datagen.lang.LangMap;
+import cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider;
 import cn.edu.jlu.renyt1621.reg.PCRegister;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.*;
 import net.minecraft.text.Text;
-import net.minecraft.text.TextContent;
-import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 
@@ -72,7 +70,7 @@ public class PCItemGroupRegister
     public PCItemGroupRegister registerAndBuild() {
         this.translateKey = Util.createTranslationKey("itemGroup", this.id);
         this.t = this.builder
-            .displayName(Text.of(this.translateKey))
+            .displayName(Text.translatable(this.translateKey))
             .build();
 
         Registry.register(Registries.ITEM_GROUP, this.key, this.t);
@@ -102,8 +100,13 @@ public class PCItemGroupRegister
     public PCItemGroupRegister translate(Language lang, String value) {
         checkNotNull("translate(Language, String)");
 
-        LangMap.instance().put(lang, this.translateKey, value);
+        PCDLLanguageProvider.LangMap.instance().put(lang, this.translateKey, value);
 
+        return this;
+    }
+
+    @Override
+    protected PCItemGroupRegister self() {
         return this;
     }
 }

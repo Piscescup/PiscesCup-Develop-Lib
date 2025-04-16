@@ -30,8 +30,6 @@ public class ModItems {
                 .rarity(Rarity.COMMON)
         )
         .registerAndBuild()
-        // .translate(Language.EN_US, "Test Block Item1") --> Will throws UnsupportedOperationException("You shouldn't try to translate 'Block Item')
-        // .translate(Language.ZH_CN, "测试方块物品1")
         .get();
 
 

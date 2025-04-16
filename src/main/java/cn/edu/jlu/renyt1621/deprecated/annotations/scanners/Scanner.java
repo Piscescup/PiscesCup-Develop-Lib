@@ -10,6 +10,7 @@ import java.lang.reflect.Field;
  * @Description
  * @Date 2025-04-12
  */
+@Deprecated
 public interface Scanner<A extends Annotation> {
     /**
      * Process the annotations of the target
