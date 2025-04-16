@@ -4,7 +4,6 @@ import cn.edu.jlu.renyt1621.reg.block.PCBlockRegister;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.DyeColor;
 
 import static cn.edu.jlu.renyt1621.References.MOD_ID;
@@ -26,8 +25,6 @@ public class ModBlocks {
         .translate(Language.EN_US, "Test Block1")
         .translate(Language.ZH_CN, "测试方块1")
         .get();
-
-    // Blocks
 
     public static void register() {}
 }

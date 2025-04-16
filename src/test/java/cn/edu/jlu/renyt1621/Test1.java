@@ -14,7 +14,7 @@ public class Test1 {
     public void test() {
         // System.out.println(Test1.class.getCanonicalName());
 
-        // System.out.println(Items.WAXED_COPPER_GRATE.getTranslationKey());
+        System.out.println(Items.WAXED_COPPER_GRATE.getTranslationKey());
     }
 
 
