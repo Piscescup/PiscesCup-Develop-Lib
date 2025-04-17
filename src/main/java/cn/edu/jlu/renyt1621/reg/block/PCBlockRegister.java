@@ -1,8 +1,7 @@
 package cn.edu.jlu.renyt1621.reg.block;
 
-import cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider;
+import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import cn.edu.jlu.renyt1621.reg.PCRegister;
-import cn.edu.jlu.renyt1621.reg.item.PCBlockItemRegister;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -171,7 +170,7 @@ public class PCBlockRegister
      * </p>
      *
      * <p>
-     *     You should use {@link cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider} to generate the language file.
+     *     You should use {@link PCLanguageProvider} to generate the language file.
      * </p>
      *
      * <p>
@@ -181,13 +180,13 @@ public class PCBlockRegister
      * @param lang The language.
      * @param value The string after translation.
      * @return The register.
-     * @see cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider
+     * @see PCLanguageProvider
      */
     @Override
     public PCBlockRegister translate(Language lang, String value) {
         checkNotNull("translate(Language, String)");
 
-        PCDLLanguageProvider.LangMap.instance().put(lang, this.t, value);
+        PCLanguageProvider.LangMap.instance().put(lang, this.t, value);
 
         return this;
     }

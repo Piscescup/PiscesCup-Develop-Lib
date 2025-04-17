@@ -15,6 +15,7 @@ import net.minecraft.text.Text;
  *
  * @author REN YuanTong
  * @Date 2025-04-05
+ * @since 1.0.0
  */
 public interface Translatable<T> {
     /**

@@ -4,9 +4,8 @@ import net.minecraft.block.Block;
 
 /**
  * @author REN YuanTong
- * @Description
  * @Date 2025-04-16
- * @Time 16:23
+ * @since 1.0.0
  */
 public class PCBlockModelMap
     extends PCModelMap<Block>

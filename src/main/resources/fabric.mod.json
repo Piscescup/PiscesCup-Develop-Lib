@@ -3,9 +3,9 @@
 	"id": "pc_develop_lib",
 	"version": "${version}",
 	"name": "PiscesCup Develop Lib",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "This is a library for simple developing.",
 	"authors": [
-		"Me!"
+		"PiscesCup"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",

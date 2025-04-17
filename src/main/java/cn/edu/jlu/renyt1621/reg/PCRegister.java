@@ -1,7 +1,7 @@
 package cn.edu.jlu.renyt1621.reg;
 
 
-import cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider;
+import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
@@ -57,6 +57,11 @@ public abstract class PCRegister<T, R extends PCRegister<T, R>> {
         this.id = Identifier.of(namespace, path);
     }
 
+    public Identifier id() {
+        return this.id;
+    }
+
+
     /**
      * Register and build the thing to be registered, but return the register object.
      * @return The register.
@@ -78,7 +83,7 @@ public abstract class PCRegister<T, R extends PCRegister<T, R>> {
      * </p>
      *
      * <p>
-     *     You should use {@link cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider} to generate the language file.
+     *     You should use {@link PCLanguageProvider} to generate the language file.
      * </p>
      *
      * <p>
@@ -88,12 +93,12 @@ public abstract class PCRegister<T, R extends PCRegister<T, R>> {
      * @param lang the language to translate.
      * @param value the string after translation.
      * @return the register.
-     * @see cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider
+     * @see PCLanguageProvider
      */
     public R translate(Language lang, String value){
         checkNotNull("translate(Language, String)");
 
-        PCDLLanguageProvider.LangMap.instance().put(lang, this.t, value);
+        PCLanguageProvider.LangMap.instance().put(lang, this.t, value);
 
         return self();
     }
@@ -110,15 +115,14 @@ public abstract class PCRegister<T, R extends PCRegister<T, R>> {
 
     /**
      * This method can add the thing to a {@link List}
+     *
+     * You should implement the method {@link #self()} before using this method.
      * @param list The list, which thing will be added to.
      * @return The register.
      */
-    @Deprecated(
-        forRemoval = true
-    )
     public R addToList(List<T> list) {
         checkNotNull("addToList(List)");
         list.add(this.t);
-        return (R) this;
+        return self();
     }
 }

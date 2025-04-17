@@ -12,5 +12,6 @@ import java.lang.annotation.Target;
 @Target({
     ElementType.FIELD
 })
+@Deprecated
 public @interface NeededRegistered {
 }

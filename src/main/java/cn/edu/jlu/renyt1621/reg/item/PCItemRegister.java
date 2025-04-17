@@ -1,6 +1,6 @@
 package cn.edu.jlu.renyt1621.reg.item;
 
-import cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider;
+import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import cn.edu.jlu.renyt1621.datagen.models.maps.PCItemModelMap;
 import cn.edu.jlu.renyt1621.reg.PCRegister;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
@@ -156,7 +156,7 @@ public class PCItemRegister
      * </p>
      *
      * <p>
-     *     You should use {@link cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider} to generate the language file.
+     *     You should use {@link PCLanguageProvider} to generate the language file.
      * </p>
      *
      * <p>
@@ -166,12 +166,12 @@ public class PCItemRegister
      * @param lang The language to translate.
      * @param value The string after translation.
      * @return The register.
-     * @see cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider
+     * @see PCLanguageProvider
      */
     @Override
     public PCItemRegister translate(Language lang, String value) {
         checkNotNull("translate(Language, String)");
-        PCDLLanguageProvider.LangMap.instance().put(lang, this.t.getTranslationKey(), value);
+        PCLanguageProvider.LangMap.instance().put(lang, this.t.getTranslationKey(), value);
         return this;
     }
 

@@ -1,6 +1,7 @@
 package cn.edu.jlu.renyt1621;
 
-import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProviderFactory;
+import cn.edu.jlu.renyt1621.datagen.factorys.PCLanguageProviderFactory;
+import cn.edu.jlu.renyt1621.datagen.factorys.PCModelProviderFactory;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -14,7 +15,8 @@ public class PiscesCupDevelopLibDataGenerator implements DataGeneratorEntrypoint
 			.forEach(pack::addProvider);
 		//  											-------------------- cost 461 ms
 
-
+		PCModelProviderFactory.modelProvider()
+			.forEach(pack::addProvider);
 
 	}
 }

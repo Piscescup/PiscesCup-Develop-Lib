@@ -26,17 +26,16 @@ import static cn.edu.jlu.renyt1621.References.MOD_LOGGER;
 
 /**
  * @author REN YuanTong
- * @Description
  * @Date 2025-04-12
- * @Time 12:00
+ * @since 1.0.0
  */
-public class PCDLLanguageProvider
+public class PCLanguageProvider
     extends FabricLanguageProvider
 {
     private String name;
     private final Map<Object, String > langMap;
 
-    protected PCDLLanguageProvider(Builder builder) {
+    protected PCLanguageProvider(Builder builder) {
         super(builder.dataOutput, builder.lang.getCode(), builder.registryLookup);
         this.name = builder.name + "/" + builder.lang.getCode();
         this.langMap = builder.langMap;
@@ -124,8 +123,8 @@ public class PCDLLanguageProvider
             return this;
         }
 
-        public PCDLLanguageProvider build() {
-            return new PCDLLanguageProvider(this);
+        public PCLanguageProvider build() {
+            return new PCLanguageProvider(this);
         }
 
     }

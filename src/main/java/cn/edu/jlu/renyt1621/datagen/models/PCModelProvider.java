@@ -8,15 +8,15 @@ import net.minecraft.client.data.ItemModelGenerator;
 
 /**
  * @author REN YuanTong
- * @Description
  * @Date 2025-04-14
  * @Time 09:03
+ * @since 1.0.0
  */
-public class PCDLModelProvider
+public class PCModelProvider
     extends FabricModelProvider
 {
 
-    public PCDLModelProvider(FabricDataOutput output) {
+    public PCModelProvider(FabricDataOutput output) {
         super(output);
     }
 
@@ -25,7 +25,7 @@ public class PCDLModelProvider
      */
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-        // blockStateModelGenerator.
+        // blockStateModelGenerator.re
     }
 
     /**

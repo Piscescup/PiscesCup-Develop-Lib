@@ -4,9 +4,8 @@ import net.minecraft.item.Item;
 
 /**
  * @author REN YuanTong
- * @Description
  * @Date 2025-04-16
- * @Time 16:20
+ * @since 1.0.0
  */
 public class PCItemModelMap
     extends PCModelMap<Item>

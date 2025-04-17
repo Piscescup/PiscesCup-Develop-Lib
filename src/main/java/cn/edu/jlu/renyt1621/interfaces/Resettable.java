@@ -21,7 +21,7 @@ package cn.edu.jlu.renyt1621.interfaces;
  *             this.keybinds = defaultKeybinds;
  *         }
  *
- *
+ *         &#64;Override
  *         public KeyBind reset() {
  *             KeyBind bind = new KeyBind(this.keybinds);
  *             this.keybinds = defaultKeybinds;
@@ -33,6 +33,7 @@ package cn.edu.jlu.renyt1621.interfaces;
  * @param <T> The type of the value which can be reset.
  * @author REN YuanTong
  * @Date 2025-04-06
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface Resettable<T> {

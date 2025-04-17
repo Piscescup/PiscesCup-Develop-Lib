@@ -1,6 +1,6 @@
 package cn.edu.jlu.renyt1621.reg.itemgroup;
 
-import cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider;
+import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import cn.edu.jlu.renyt1621.reg.PCRegister;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.item.ItemGroup;
@@ -37,6 +37,7 @@ import net.minecraft.util.Util;
  *
  * @author REN YuanTong
  * @Date 2025-04-08
+ * @since 1.0.0
  */
 public class PCItemGroupRegister
     extends PCRegister<ItemGroup, PCItemGroupRegister>
@@ -83,7 +84,7 @@ public class PCItemGroupRegister
      * </p>
      *
      * <p>
-     *     You should use {@link cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider} to generate the language file.
+     *     You should use {@link PCLanguageProvider} to generate the language file.
      * </p>
      *
      * <p>
@@ -94,13 +95,13 @@ public class PCItemGroupRegister
      * @param lang The language.
      * @param value The string after translation.
      * @return The register.
-     * @see cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider
+     * @see PCLanguageProvider
      */
     @Override
     public PCItemGroupRegister translate(Language lang, String value) {
         checkNotNull("translate(Language, String)");
 
-        PCDLLanguageProvider.LangMap.instance().put(lang, this.translateKey, value);
+        PCLanguageProvider.LangMap.instance().put(lang, this.translateKey, value);
 
         return this;
     }

@@ -1,5 +1,6 @@
-package cn.edu.jlu.renyt1621.datagen.lang;
+package cn.edu.jlu.renyt1621.datagen.factorys;
 
+import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.data.DataProvider;
@@ -10,12 +11,11 @@ import java.util.Map;
 
 /**
  * @author REN YuanTong
- * @Description
  * @Date 2025-04-15
- * @Time 13:00
+ * @since 1.0.0
  */
 public class PCLanguageProviderFactory {
-    private static final PCDLLanguageProvider.LangMap LANG_MAP = PCDLLanguageProvider.LangMap.instance();
+    private static final PCLanguageProvider.LangMap LANG_MAP = PCLanguageProvider.LangMap.instance();
 
     private static FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider> getLanguageProvider(
         Language lang
@@ -23,7 +23,7 @@ public class PCLanguageProviderFactory {
         Map<Object, String> langMap = LANG_MAP.get(lang);
 
         return (output, lookUp) ->
-                PCDLLanguageProvider.Builder.create()
+                PCLanguageProvider.Builder.create()
                     .dataOutput(output)
                     .lang(lang)
                     .langMap(langMap)

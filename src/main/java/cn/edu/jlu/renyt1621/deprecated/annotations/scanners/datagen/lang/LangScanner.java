@@ -3,7 +3,7 @@ package cn.edu.jlu.renyt1621.deprecated.annotations.scanners.datagen.lang;
 import cn.edu.jlu.renyt1621.deprecated.annotations.lang.Langs;
 import cn.edu.jlu.renyt1621.deprecated.annotations.scanners.DataGenScanner;
 import cn.edu.jlu.renyt1621.deprecated.annotations.scanners.ScannerPackages;
-import cn.edu.jlu.renyt1621.datagen.lang.PCDLLanguageProvider;
+import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.data.DataProvider;
 
@@ -22,7 +22,7 @@ import java.util.Arrays;
 public class LangScanner
     implements DataGenScanner<Langs>
 {
-    private final PCDLLanguageProvider.LangMap LANGS_MAP = PCDLLanguageProvider.LangMap.instance();
+    private final PCLanguageProvider.LangMap LANGS_MAP = PCLanguageProvider.LangMap.instance();
 
 
     /**
@@ -37,7 +37,7 @@ public class LangScanner
                 (lang, langMap) -> pack.addProvider(
                     (FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>)
                         (output, lookUp) ->
-                            PCDLLanguageProvider.Builder.create()
+                            PCLanguageProvider.Builder.create()
                                 .dataOutput(output)
                                 .lang(lang)
                                 .langMap(langMap)
