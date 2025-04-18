@@ -2,6 +2,8 @@ package cn.edu.jlu.renyt1621.reg.block;
 
 import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import cn.edu.jlu.renyt1621.reg.PCRegister;
+import cn.edu.jlu.renyt1621.reg.loot.DropSelf;
+import cn.edu.jlu.renyt1621.reg.recipes.PCShapelessRecipe;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -9,6 +11,7 @@ import net.minecraft.block.MapColor;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.client.data.Model;
+import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -16,7 +19,11 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -52,6 +59,8 @@ public class PCBlockRegister
     private AbstractBlock.Settings settings = AbstractBlock.Settings.create();
     private Function<AbstractBlock.Settings, Block> factory = Block::new;
 
+
+
     private PCBlockRegister(Identifier id) {
         super(id);
         this.key = RegistryKey.of(RegistryKeys.BLOCK, id);
@@ -64,7 +73,8 @@ public class PCBlockRegister
      * @param path the path of the block to be registered
      * @return a new block register
      */
-    public static PCBlockRegister create(String path) {
+    @Contract("_ -> new")
+    public static @NotNull PCBlockRegister create(String path) {
         return new PCBlockRegister(Identifier.of(path));
     }
 
@@ -78,7 +88,8 @@ public class PCBlockRegister
      * @param path the path of the block to be registered
      * @return a new block register
      */
-    public static PCBlockRegister create(String namespace, String path) {
+    @Contract("_, _ -> new")
+    public static @NotNull PCBlockRegister create(String namespace, String path) {
         return new PCBlockRegister(Identifier.of(namespace, path));
     }
 
@@ -91,7 +102,8 @@ public class PCBlockRegister
      * @return a new block register
      * @see Identifier#of(String namespace, String path)
      */
-    public static PCBlockRegister create(Identifier identifier) {
+    @Contract("_ -> new")
+    public static @NotNull PCBlockRegister create(Identifier identifier) {
         return new PCBlockRegister(identifier);
     }
 
@@ -129,7 +141,7 @@ public class PCBlockRegister
      * </p>
      *
      * <p>
-     *     Take registering a slab block for example:
+     *     Take registering a slab block as example:
      *     <blockquote><pre>
      *         SlabBlock::new
      *     </pre></blockquote>
@@ -214,5 +226,34 @@ public class PCBlockRegister
             .strength(2.0F)
             .sounds(sounds)
             .burnable();
+    }
+
+
+
+
+    // Below are loots tables
+    public PCBlockRegister dropWithFortune(Item itemDropped, int min, int max) {
+        checkNotNull("dropWithFortune(Item, int, int)");
+
+        return this;
+    }
+
+
+    public PCBlockRegister dropWithSilkTouch(Block blockDropped) {
+
+
+        return this;
+    }
+
+    public PCBlockRegister drop(Block blockDropped) {
+        checkNotNull("drop(Block)");
+
+
+        return this;
+    }
+
+    public PCBlockRegister dropSelf() {
+        checkNotNull("dropSelf()");
+        return drop(this.t);
     }
 }

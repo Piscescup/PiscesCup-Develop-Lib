@@ -23,10 +23,6 @@ public class PiscesCupDevelopLib implements ModInitializer {
 		ModBlocks.register();
 		ModItemGroups.register();
 
-		System.out.println(ModItems.ITEM1.getTranslationKey());
-		System.out.println(ModBlocks.BLOCK.getTranslationKey());
-		System.out.println(ModItems.BLOCK_ITEM.getTranslationKey());
-		System.out.println(Items.WAXED_COPPER_GRATE.getTranslationKey());
 
 	}
 }

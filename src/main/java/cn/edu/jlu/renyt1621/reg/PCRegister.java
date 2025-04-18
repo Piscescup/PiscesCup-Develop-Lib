@@ -5,6 +5,7 @@ import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -120,7 +121,7 @@ public abstract class PCRegister<T, R extends PCRegister<T, R>> {
      * @param list The list, which thing will be added to.
      * @return The register.
      */
-    public R addToList(List<T> list) {
+    public R addToList(@NotNull List<T> list) {
         checkNotNull("addToList(List)");
         list.add(this.t);
         return self();

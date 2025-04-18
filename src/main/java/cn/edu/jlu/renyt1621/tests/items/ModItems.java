@@ -2,8 +2,14 @@ package cn.edu.jlu.renyt1621.tests.items;
 
 import cn.edu.jlu.renyt1621.reg.item.PCBlockItemRegister;
 import cn.edu.jlu.renyt1621.reg.item.PCItemRegister;
+import cn.edu.jlu.renyt1621.reg.recipes.PCShapedRecipe;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
+import net.minecraft.client.data.Models;
+import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
+import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.util.Rarity;
 
 
@@ -17,17 +23,28 @@ import static cn.edu.jlu.renyt1621.tests.blocks.ModBlocks.*;
 public class ModItems {
     public static final Item ITEM1 = PCItemRegister.create(MOD_ID, "item1")
         .registerAndBuild()
+        .shapedRecipe(PCShapedRecipe.Builder.create()
+            .pattern("***")
+            .pattern("***")
+            .pattern(" # ")
+            .definition('*', Items.ACACIA_PLANKS)
+            .definition('#', Items.ACACIA_BUTTON)
+            .category(RecipeCategory.BUILDING_BLOCKS)
+            .criterion("has_item", Items.ACACIA_PLANKS)
+            .count(4)
+            .build()
+        )
         .translate(Language.EN_US, "Test Item1")
         .translate(Language.ZH_CN, "测试物品1")
+        .model(Models.GENERATED)
         .get();
 
 
     public static final Item BLOCK_ITEM = PCBlockItemRegister.create(BLOCK)
-        .settings(
-            new Item.Settings()
-                .maxCount(16)
-                .fireproof()
-                .rarity(Rarity.COMMON)
+        .settings(new Item.Settings()
+            .maxCount(16)
+            .fireproof()
+            .rarity(Rarity.COMMON)
         )
         .registerAndBuild()
         .get();

@@ -2,16 +2,19 @@ package cn.edu.jlu.renyt1621.reg.item;
 
 import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import cn.edu.jlu.renyt1621.datagen.models.maps.PCItemModelMap;
+import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapedRecipeMap;
 import cn.edu.jlu.renyt1621.reg.PCRegister;
+import cn.edu.jlu.renyt1621.reg.recipes.PCShapedRecipe;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.client.data.Model;
+import net.minecraft.data.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.item.*;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.*;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -46,6 +49,10 @@ public class PCItemRegister
 {
     private Item.Settings settings = new Item.Settings();
     private Function<Item.Settings, Item> factory = Item::new;
+    private ShapedRecipeJsonBuilder builder;
+
+
+    // private List<PCShapelessRecipe> shapelessRecipes = new ArrayList<>();
 
 
     private PCItemRegister(Identifier id) {
@@ -84,7 +91,8 @@ public class PCItemRegister
     * @param path the path of the block to be registered
      * @return a new block register
      */
-    public static PCItemRegister create(String path) {
+    @Contract("_ -> new")
+    public static @NotNull PCItemRegister create(String path) {
         return new PCItemRegister(Identifier.of(path));
     }
 
@@ -97,12 +105,14 @@ public class PCItemRegister
      * @param path The item path
      * @return A new item register
      */
-    public static PCItemRegister create(String namespace, String path) {
+    @Contract("_, _ -> new")
+    public static @NotNull PCItemRegister create(String namespace, String path) {
         return new PCItemRegister(Identifier.of(namespace, path));
     }
 
 
-    public static PCItemRegister create(Identifier identifier) {
+    @Contract("_ -> new")
+    public static @NotNull PCItemRegister create(Identifier identifier) {
         return new PCItemRegister(identifier);
     }
 
@@ -150,6 +160,14 @@ public class PCItemRegister
         return this;
     }
 
+    // Below are recipes.
+    public PCItemRegister shapedRecipe(PCShapedRecipe shapedRecipe) {
+        checkNotNull("shapelessRecipe(List, int)");
+        PCShapedRecipeMap.instance().put(shapedRecipe, this.t);
+        return this;
+    }
+
+
     /**
      * <p>
      * Translate the {@code Item} to the language.
@@ -179,4 +197,7 @@ public class PCItemRegister
     protected PCItemRegister self() {
         return this;
     }
+
+
+
 }

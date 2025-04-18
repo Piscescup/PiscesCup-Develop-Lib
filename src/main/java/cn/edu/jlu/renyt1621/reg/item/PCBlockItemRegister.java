@@ -11,6 +11,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.BiFunction;
 
@@ -71,7 +72,7 @@ public class PCBlockItemRegister
      * @param block The block to create an item for
      * @return A new block item register
      */
-    public static PCBlockItemRegister create(Block block) {
+    public static @NotNull PCBlockItemRegister create(@NotNull Block block) {
         PCBlockItemRegister reg = new PCBlockItemRegister();
         reg.block = block;
         reg.key = RegistryKey.of(RegistryKeys.ITEM, block.getRegistryEntry().registryKey().getValue());

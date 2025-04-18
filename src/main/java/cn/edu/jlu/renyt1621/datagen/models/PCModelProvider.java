@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.BlockStateModelGenerator;
 import net.minecraft.client.data.ItemModelGenerator;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author REN YuanTong
@@ -32,7 +33,7 @@ public class PCModelProvider
      * @param itemModelGenerator
      */
     @Override
-    public void generateItemModels(ItemModelGenerator itemModelGenerator) {
+    public void generateItemModels(@NotNull ItemModelGenerator itemModelGenerator) {
         PCItemModelMap.instance().get()
             .forEach(itemModelGenerator::register);
     }

@@ -2,6 +2,7 @@ package cn.edu.jlu.renyt1621.datagen.models.maps;
 
 import net.minecraft.client.data.Model;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ import java.util.Set;
  * @Time 16:11
  */ 
 public abstract class PCModelMap<T> {
-    protected Map<T, Model> MODEL_MAP;
+    protected Map<T, Model> MODEL_MAP = new HashMap<>();
 
     protected PCModelMap() {}
 

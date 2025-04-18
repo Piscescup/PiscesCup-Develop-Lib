@@ -4,20 +4,26 @@ import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.data.DataProvider;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 /**
  * @author REN YuanTong
  * @Date 2025-04-15
  * @since 1.0.0
  */
-public class PCLanguageProviderFactory {
+public final class PCLanguageProviderFactory {
     private static final PCLanguageProvider.LangMap LANG_MAP = PCLanguageProvider.LangMap.instance();
 
-    private static FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider> getLanguageProvider(
+    private PCLanguageProviderFactory() {}
+
+    private static @NotNull FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider> getLanguageProvider(
         Language lang
     ) {
         Map<Object, String> langMap = LANG_MAP.get(lang);
@@ -59,7 +65,8 @@ public class PCLanguageProviderFactory {
      * @param lang The language
      * @return A list of {@code RegistryDependentFactory} of language provider for the given language
      */
-    public static List<FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>> languageProvider(
+    @Contract("_ -> new")
+    public static @NotNull @Unmodifiable List<FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>> languageProvider(
         Language lang
     ) {
         return List.of(
@@ -127,7 +134,7 @@ public class PCLanguageProviderFactory {
      * @return A list of {@code RegistryDependentFactory} of language provider for the given language
      */
     public static List<FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>> languagesProvider(
-        List<Language> langList
+        @NotNull List<Language> langList
     ) {
         return langList.stream()
             .map(PCLanguageProviderFactory::getLanguageProvider)
@@ -156,7 +163,7 @@ public class PCLanguageProviderFactory {
      * </pre></blockquote>
      * @return A list of {@code RegistryDependentFactory} of language provider for all language
      */
-    public static List<FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>> allLanguagesProvider() {
+    public static @Unmodifiable List<FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>> allLanguagesProvider() {
         return Arrays.stream(Language.values())
             .map(PCLanguageProviderFactory::getLanguageProvider)
             .toList();

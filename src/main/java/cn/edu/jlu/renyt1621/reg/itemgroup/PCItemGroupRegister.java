@@ -8,6 +8,8 @@ import net.minecraft.registry.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * <h1>Description</h1>
@@ -50,15 +52,18 @@ public class PCItemGroupRegister
         this.key = RegistryKey.of(RegistryKeys.ITEM_GROUP, this.id);
     }
 
-    public static PCItemGroupRegister create(String path) {
+    @Contract("_ -> new")
+    public static @NotNull PCItemGroupRegister create(String path) {
         return new PCItemGroupRegister(Identifier.of(path));
     }
 
-    public static PCItemGroupRegister create(String namespace, String path) {
+    @Contract("_, _ -> new")
+    public static @NotNull PCItemGroupRegister create(String namespace, String path) {
         return new PCItemGroupRegister(Identifier.of(namespace, path));
     }
 
-    public static PCItemGroupRegister create(Identifier identifier) {
+    @Contract("_ -> new")
+    public static @NotNull PCItemGroupRegister create(Identifier identifier) {
         return new PCItemGroupRegister(identifier);
     }
 
