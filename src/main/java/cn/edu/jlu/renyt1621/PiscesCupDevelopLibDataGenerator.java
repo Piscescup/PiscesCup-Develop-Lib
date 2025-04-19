@@ -4,6 +4,7 @@ import cn.edu.jlu.renyt1621.datagen.factorys.PCLanguageProviderFactory;
 import cn.edu.jlu.renyt1621.datagen.factorys.PCModelProviderFactory;
 import cn.edu.jlu.renyt1621.datagen.factorys.PCRecipesProviderFactory;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
+import com.google.common.base.Function;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 

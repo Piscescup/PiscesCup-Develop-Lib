@@ -1,12 +1,15 @@
 package cn.edu.jlu.renyt1621.datagen.recipes;
 
 import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapedRecipeMap;
+import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapelessRecipeMap;
 import cn.edu.jlu.renyt1621.reg.recipes.PCShapedRecipe;
+import cn.edu.jlu.renyt1621.reg.recipes.PCShapelessRecipe;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.data.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.data.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.recipe.Ingredient;
@@ -30,8 +33,8 @@ import java.util.concurrent.CompletableFuture;
 public class PCRecipeProvider
     extends FabricRecipeProvider
 {
-    private final Map<PCShapedRecipe, ItemConvertible> shapedRecipes = PCShapedRecipeMap.instance().getShapedRecipes();
-
+    private final Map<PCShapedRecipe, ItemConvertible> shapedRecipesMap = PCShapedRecipeMap.instance().getShapedRecipes();
+    private final Map<PCShapelessRecipe, ItemConvertible> shapelessRecipesMap = PCShapelessRecipeMap.instance().getShapelessRecipeItemMap();
 
     public PCRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -42,7 +45,7 @@ public class PCRecipeProvider
         return new RecipeGenerator(wrapperLookup, recipeExporter) {
             @Override
             public void generate() {
-                shapedRecipes.forEach(
+                shapedRecipesMap.forEach(
                     (shapedRecipe, item) -> {
                         RecipeCategory category = shapedRecipe.getCategory();
                         Map<Character, Ingredient> definitions = shapedRecipe.getDefinitions();
@@ -64,6 +67,27 @@ public class PCRecipeProvider
                         shapedRecipeJsonBuilder.offerTo(exporter);
                     }
                 );
+
+                shapelessRecipesMap.forEach(
+                    (shapelessRecipe, item) -> {
+                        RecipeCategory category = shapelessRecipe.getCategory();
+                        List<Ingredient> ingredients = shapelessRecipe.getIngredients();
+                        List<TagKey<Item>> tagKey = shapelessRecipe.getTagKey();
+                        int count = shapelessRecipe.getCount();
+                        Map<String, Item> criteria = shapelessRecipe.getCriteria();
+                        ShapelessRecipeJsonBuilder shapeless = createShapeless(category, item, count);
+
+                        ingredients.forEach(shapeless::input);
+                        tagKey.forEach(shapeless::input);
+                        criteria.forEach(
+                            (criterionName, criterionItem) -> shapeless.criterion(criterionName, conditionsFromItem(criterionItem))
+                        );
+
+                        shapeless.offerTo(exporter);
+                    }
+                );
+
+
             }
         };
     }

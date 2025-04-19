@@ -1,7 +1,11 @@
 package cn.edu.jlu.renyt1621.reg.item;
 
 import cn.edu.jlu.renyt1621.datagen.models.maps.PCItemModelMap;
+import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapedRecipeMap;
+import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapelessRecipeMap;
 import cn.edu.jlu.renyt1621.reg.PCRegister;
+import cn.edu.jlu.renyt1621.reg.recipes.PCShapedRecipe;
+import cn.edu.jlu.renyt1621.reg.recipes.PCShapelessRecipe;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.block.Block;
 import net.minecraft.client.data.Model;
@@ -13,6 +17,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.function.BiFunction;
 
 /**
@@ -103,11 +108,6 @@ public class PCBlockItemRegister
         return this;
     }
 
-    public PCBlockItemRegister model(Model model) {
-        PCItemModelMap.instance().put(this.t, model);
-        return this;
-    }
-
     /**
      * <p>
      *     Registers the block item and returns the registered item instance.
@@ -131,10 +131,42 @@ public class PCBlockItemRegister
         return this;
     }
 
+    public PCBlockItemRegister model(Model model) {
+        PCItemModelMap.instance().put(this.t, model);
+        return this;
+    }
+
+    // Below are recipes.
+    public PCBlockItemRegister shapedRecipe(PCShapedRecipe shapedRecipe) {
+        checkNotNull("shapelessRecipe(List, int)");
+        PCShapedRecipeMap.instance().put(shapedRecipe, this.t);
+        return this;
+    }
+
+    public PCBlockItemRegister shapedRecipe(List<PCShapedRecipe> shapedRecipes) {
+        checkNotNull("shapelessRecipe(List, int)");
+        PCShapedRecipeMap shapedRecipeMap = PCShapedRecipeMap.instance();
+        shapedRecipes.forEach(recipe -> shapedRecipeMap.put(recipe, this.t));
+        return this;
+    }
+
+    public PCBlockItemRegister shapelessRecipe(PCShapelessRecipe shapelessRecipe) {
+        checkNotNull("shapelessRecipe(List, int)");
+        PCShapelessRecipeMap.instance().put(shapelessRecipe, this.t);
+        return this;
+    }
+
+    public PCBlockItemRegister shapelessRecipe(List<PCShapelessRecipe> shapelessRecipes) {
+        checkNotNull("shapelessRecipe(List, int)");
+        PCShapelessRecipeMap shapedRecipeMap = PCShapelessRecipeMap.instance();
+        shapelessRecipes.forEach(recipe -> shapedRecipeMap.put(recipe, this.t));
+        return this;
+    }
+
 
     /**
      * <strong>
-     *     You should not try to translate 'Block Item'.
+     *     Translating 'Block Item' is prohibited.
      * </strong>
      */
     @Override
@@ -145,9 +177,6 @@ public class PCBlockItemRegister
         );
     }
 
-    /**
-     * @return
-     */
     @Override
     protected PCBlockItemRegister self() {
         return this;

@@ -3,8 +3,10 @@ package cn.edu.jlu.renyt1621.reg.item;
 import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import cn.edu.jlu.renyt1621.datagen.models.maps.PCItemModelMap;
 import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapedRecipeMap;
+import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapelessRecipeMap;
 import cn.edu.jlu.renyt1621.reg.PCRegister;
 import cn.edu.jlu.renyt1621.reg.recipes.PCShapedRecipe;
+import cn.edu.jlu.renyt1621.reg.recipes.PCShapelessRecipe;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.client.data.Model;
 import net.minecraft.data.recipe.ShapedRecipeJsonBuilder;
@@ -164,6 +166,26 @@ public class PCItemRegister
     public PCItemRegister shapedRecipe(PCShapedRecipe shapedRecipe) {
         checkNotNull("shapelessRecipe(List, int)");
         PCShapedRecipeMap.instance().put(shapedRecipe, this.t);
+        return this;
+    }
+
+    public PCItemRegister shapedRecipe(List<PCShapedRecipe> shapedRecipes) {
+        checkNotNull("shapelessRecipe(List, int)");
+        PCShapedRecipeMap shapedRecipeMap = PCShapedRecipeMap.instance();
+        shapedRecipes.forEach(recipe -> shapedRecipeMap.put(recipe, this.t));
+        return this;
+    }
+
+    public PCItemRegister shapelessRecipe(PCShapelessRecipe shapelessRecipe) {
+        checkNotNull("shapelessRecipe(List, int)");
+        PCShapelessRecipeMap.instance().put(shapelessRecipe, this.t);
+        return this;
+    }
+
+    public PCItemRegister shapelessRecipe(List<PCShapelessRecipe> shapelessRecipes) {
+        checkNotNull("shapelessRecipe(List, int)");
+        PCShapelessRecipeMap shapedRecipeMap = PCShapelessRecipeMap.instance();
+        shapelessRecipes.forEach(recipe -> shapedRecipeMap.put(recipe, this.t));
         return this;
     }
 

@@ -40,7 +40,7 @@ public final class PCLanguageProviderFactory {
 
     /**
      * <p>
-     *     Provider a list of {@code RegistryDependentFactory} of language provider for the given language.</br>
+     *     Provide a list of {@code RegistryDependentFactory} of language provider for the given language.</br>
      *     You should use this method in The DataGenerator class provided by the <strong>Fabric</strong>.</br>
      * </p>
      *
@@ -76,7 +76,7 @@ public final class PCLanguageProviderFactory {
 
     /**
      * <p>
-     *     Provider a list of {@code RegistryDependentFactory} of language provider for the given languages.</br>
+     *     Provide a list of {@code RegistryDependentFactory} of language provider for the given languages.</br>
      *     You should use this method in the DataGenerator class provided by the <strong>Fabric</strong>.</br>
      * </p>
      *
@@ -110,7 +110,7 @@ public final class PCLanguageProviderFactory {
 
     /**
      * <p>
-     *     Provider a list of {@code RegistryDependentFactory} of language provider for the given language {@code list}.</br>
+     *     Provide a list of {@code RegistryDependentFactory} of language provider for the given language {@code list}.</br>
      *     You should use this method in the DataGenerator class provided by the <strong>Fabric</strong>.</br>
      * </p>
      *
@@ -143,7 +143,7 @@ public final class PCLanguageProviderFactory {
 
     /**
      * <p>
-     *     Provider a list of {@code RegistryDependentFactory} of language provider for all languages.</br>
+     *     Provide a list of {@code RegistryDependentFactory} of language provider for all languages.</br>
      *     You should use this method in the DataGenerator class provided by the <strong>Fabric</strong>.</br>
      * </p>
      *
