@@ -1,11 +1,11 @@
-package cn.edu.jlu.renyt1621.reg.item;
+package cn.edu.jlu.renyt1621.register.item;
 
 import cn.edu.jlu.renyt1621.datagen.models.maps.PCItemModelMap;
 import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapedRecipeMap;
 import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapelessRecipeMap;
-import cn.edu.jlu.renyt1621.reg.PCRegister;
-import cn.edu.jlu.renyt1621.reg.recipes.PCShapedRecipe;
-import cn.edu.jlu.renyt1621.reg.recipes.PCShapelessRecipe;
+import cn.edu.jlu.renyt1621.register.PCRegister;
+import cn.edu.jlu.renyt1621.datagen.recipes.craft.PCShapedRecipe;
+import cn.edu.jlu.renyt1621.datagen.recipes.craft.PCShapelessRecipe;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.block.Block;
 import net.minecraft.client.data.Model;
@@ -30,23 +30,24 @@ import java.util.function.BiFunction;
  * <h1>Usages</h1>
  * Below is a simple usage:
  * <blockquote><pre>
- *     public static final Block BLOCK = PCBlockRegister.create(MOD_ID, "block")
- *         .build();
- *
  *     public static final Item BLOCK_ITEM = PCBlockItemRegister.create(BLOCK)
- *         .build();
- * </pre></blockquote>
- *
- * If the item has some special settings, you can use the following code:
- * <blockquote><pre>
- *     public static final Item BLOCK_ITEM = PCBlockItemRegister.create(BLOCK)
- *         .settings(
- *             new Item.Settings()
- *                 .maxCount(16)
- *                 .fireproof()
- *                 .rarity(Rarity.COMMON)
+ *         .settings(new Item.Settings()
+ *             .maxCount(16)
+ *             .fireproof()
+ *             .rarity(Rarity.COMMON)
  *         )
- *         .build();
+ *         .registerAndBuild()
+ *         .shapelessRecipe(PCShapelessRecipe.Builder.create()
+ *             .category(RecipeCategory.BUILDING_BLOCKS)
+ *             .input(ItemTags.PLANKS)
+ *             .input(ItemTags.BUTTONS)
+ *             .input(Items.IRON_INGOT)
+ *             .count(4)
+ *             .criterion("has_planks", Items.IRON_INGOT)
+ *             .build()
+ *         )
+ *         .model(Models.GENERATED)
+ *         .get();
  * </pre></blockquote>
  *
  * @author REN YuanTong

@@ -2,8 +2,8 @@ package cn.edu.jlu.renyt1621.datagen.recipes;
 
 import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapedRecipeMap;
 import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapelessRecipeMap;
-import cn.edu.jlu.renyt1621.reg.recipes.PCShapedRecipe;
-import cn.edu.jlu.renyt1621.reg.recipes.PCShapelessRecipe;
+import cn.edu.jlu.renyt1621.datagen.recipes.craft.PCShapedRecipe;
+import cn.edu.jlu.renyt1621.datagen.recipes.craft.PCShapelessRecipe;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.recipe.RecipeExporter;

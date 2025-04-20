@@ -1,7 +1,7 @@
-package cn.edu.jlu.renyt1621.reg.itemgroup;
+package cn.edu.jlu.renyt1621.register.itemgroup;
 
 import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
-import cn.edu.jlu.renyt1621.reg.PCRegister;
+import cn.edu.jlu.renyt1621.register.PCRegister;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.*;

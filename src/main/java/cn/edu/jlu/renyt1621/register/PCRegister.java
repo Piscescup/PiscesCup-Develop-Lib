@@ -1,4 +1,4 @@
-package cn.edu.jlu.renyt1621.reg;
+package cn.edu.jlu.renyt1621.register;
 
 
 import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
@@ -23,10 +23,10 @@ import java.util.List;
  * </p>
  * Below are the subclasses:
  * <ul>
- *     <li>{@link cn.edu.jlu.renyt1621.reg.itemgroup.PCItemGroupRegister}</li>
- *     <li>{@link cn.edu.jlu.renyt1621.reg.item.PCItemRegister}</li>
- *     <li>{@link cn.edu.jlu.renyt1621.reg.block.PCBlockRegister}</li>
- *     <li>{@link cn.edu.jlu.renyt1621.reg.item.PCBlockItemRegister}</li>
+ *     <li>{@link cn.edu.jlu.renyt1621.register.itemgroup.PCItemGroupRegister}</li>
+ *     <li>{@link cn.edu.jlu.renyt1621.register.item.PCItemRegister}</li>
+ *     <li>{@link cn.edu.jlu.renyt1621.register.block.PCBlockRegister}</li>
+ *     <li>{@link cn.edu.jlu.renyt1621.register.item.PCBlockItemRegister}</li>
  * </ul>
  *
  * @param <T> The type of the thing to be registered, such as: {@code Item}, {@code Block}, {@code ItemGroup} and so on.
@@ -34,10 +34,10 @@ import java.util.List;
  * @author REN YuanTong
  * @Date 2025-04-06
  * @since 1.0.0
- * @see cn.edu.jlu.renyt1621.reg.itemgroup.PCItemGroupRegister
- * @see cn.edu.jlu.renyt1621.reg.item.PCItemRegister
- * @see cn.edu.jlu.renyt1621.reg.block.PCBlockRegister
- * @see cn.edu.jlu.renyt1621.reg.item.PCBlockItemRegister
+ * @see cn.edu.jlu.renyt1621.register.itemgroup.PCItemGroupRegister
+ * @see cn.edu.jlu.renyt1621.register.item.PCItemRegister
+ * @see cn.edu.jlu.renyt1621.register.block.PCBlockRegister
+ * @see cn.edu.jlu.renyt1621.register.item.PCBlockItemRegister
  */
 public abstract class PCRegister<T, R extends PCRegister<T, R>> {
     protected T t;
@@ -64,7 +64,7 @@ public abstract class PCRegister<T, R extends PCRegister<T, R>> {
 
 
     /**
-     * Register and build the thing to be registered, but return the register object.
+     * Register and build the thing to be registered, and return the register object.
      * @return The register.
      */
     public abstract R registerAndBuild();
@@ -84,12 +84,11 @@ public abstract class PCRegister<T, R extends PCRegister<T, R>> {
      * </p>
      *
      * <p>
-     *     You should use {@link PCLanguageProvider} to generate the language file.
+     *     Use {@link PCLanguageProvider} to generate the language file.
      * </p>
      *
      * <p>
-     *     You should use the method{@link #registerAndBuild()} before you use this method.
-     *     Because this method is depended on the method {@link #registerAndBuild()}.
+     *     Use the method{@link #registerAndBuild()} before using this method.
      * </p>
      * @param lang the language to translate.
      * @param value the string after translation.

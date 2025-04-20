@@ -1,9 +1,8 @@
-package cn.edu.jlu.renyt1621.reg.block;
+package cn.edu.jlu.renyt1621.register.block;
 
 import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
-import cn.edu.jlu.renyt1621.reg.PCRegister;
-import cn.edu.jlu.renyt1621.reg.loot.DropSelf;
-import cn.edu.jlu.renyt1621.reg.recipes.PCShapelessRecipe;
+import cn.edu.jlu.renyt1621.datagen.models.maps.PCBlockModelMap;
+import cn.edu.jlu.renyt1621.register.PCRegister;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -22,8 +21,6 @@ import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -229,9 +226,15 @@ public class PCBlockRegister
     }
 
 
+    public PCBlockRegister simpleCubeAll() {
+        checkNotNull("simpleCubeAll()");
+        PCBlockModelMap.instance().addToCubeAll(this.t);
+
+        return this;
+    }
 
 
-    // Below are loots tables
+
     public PCBlockRegister dropWithFortune(Item itemDropped, int min, int max) {
         checkNotNull("dropWithFortune(Item, int, int)");
 

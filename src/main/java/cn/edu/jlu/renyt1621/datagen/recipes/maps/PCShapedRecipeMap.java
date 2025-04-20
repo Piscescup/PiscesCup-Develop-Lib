@@ -1,6 +1,6 @@
 package cn.edu.jlu.renyt1621.datagen.recipes.maps;
 
-import cn.edu.jlu.renyt1621.reg.recipes.PCShapedRecipe;
+import cn.edu.jlu.renyt1621.datagen.recipes.craft.PCShapedRecipe;
 import net.minecraft.item.ItemConvertible;
 
 import java.util.HashMap;

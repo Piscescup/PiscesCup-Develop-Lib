@@ -1,10 +1,9 @@
 package cn.edu.jlu.renyt1621.tests.blocks;
 
-import cn.edu.jlu.renyt1621.reg.block.PCBlockRegister;
+import cn.edu.jlu.renyt1621.register.block.PCBlockRegister;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.DyeColor;
 
 import static cn.edu.jlu.renyt1621.References.MOD_ID;
@@ -16,7 +15,7 @@ import static cn.edu.jlu.renyt1621.References.MOD_ID;
  * @Time 15:04
  */
 public class ModBlocks {
-    public static final Block BLOCK = PCBlockRegister.create(MOD_ID, "block")
+    public static final Block BLOCK = PCBlockRegister.create(MOD_ID, "block1")
         .settings(
             AbstractBlock.Settings.create()
                 .burnable()
@@ -25,6 +24,7 @@ public class ModBlocks {
         .registerAndBuild()
         .translate(Language.EN_US, "Test Block1")
         .translate(Language.ZH_CN, "测试方块1")
+        .simpleCubeAll()
         .get();
 
     // Blocks

@@ -1,4 +1,4 @@
-package cn.edu.jlu.renyt1621.reg.loot;
+package cn.edu.jlu.renyt1621.register.loot;
 
 /**
  * <h1>Description</h1>

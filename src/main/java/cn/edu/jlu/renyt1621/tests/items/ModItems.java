@@ -1,9 +1,9 @@
 package cn.edu.jlu.renyt1621.tests.items;
 
-import cn.edu.jlu.renyt1621.reg.item.PCBlockItemRegister;
-import cn.edu.jlu.renyt1621.reg.item.PCItemRegister;
-import cn.edu.jlu.renyt1621.reg.recipes.PCShapedRecipe;
-import cn.edu.jlu.renyt1621.reg.recipes.PCShapelessRecipe;
+import cn.edu.jlu.renyt1621.register.item.PCBlockItemRegister;
+import cn.edu.jlu.renyt1621.register.item.PCItemRegister;
+import cn.edu.jlu.renyt1621.datagen.recipes.craft.PCShapedRecipe;
+import cn.edu.jlu.renyt1621.datagen.recipes.craft.PCShapelessRecipe;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.client.data.Models;
 import net.minecraft.item.Item;
@@ -32,15 +32,6 @@ public class ModItems {
             .category(RecipeCategory.BUILDING_BLOCKS)
             .criterion("has_item", Items.ACACIA_PLANKS)
             .count(4)
-            .build()
-        )
-        .shapelessRecipe(PCShapelessRecipe.Builder.create()
-            .category(RecipeCategory.BUILDING_BLOCKS)
-            .input(ItemTags.PLANKS)
-            .input(ItemTags.BUTTONS)
-            .input(Items.IRON_INGOT)
-            .count(4)
-            .criterion("has_planks", Items.IRON_INGOT)
             .build()
         )
         .translate(Language.EN_US, "Test Item1")
@@ -72,6 +63,15 @@ public class ModItems {
             .rarity(Rarity.COMMON)
         )
         .registerAndBuild()
+        .shapelessRecipe(PCShapelessRecipe.Builder.create()
+            .category(RecipeCategory.BUILDING_BLOCKS)
+            .input(ItemTags.PLANKS)
+            .input(ItemTags.BUTTONS)
+            .input(Items.IRON_INGOT)
+            .count(4)
+            .criterion("has_planks", Items.IRON_INGOT)
+            .build()
+        )
         .get();
 
 

@@ -1,6 +1,6 @@
 package cn.edu.jlu.renyt1621.tests.itemgroups;
 
-import cn.edu.jlu.renyt1621.reg.itemgroup.PCItemGroupRegister;
+import cn.edu.jlu.renyt1621.register.itemgroup.PCItemGroupRegister;
 import cn.edu.jlu.renyt1621.tests.blocks.ModBlocks;
 import cn.edu.jlu.renyt1621.tests.items.ModItems;
 import cn.edu.jlu.renyt1621.utils.constant.Language;

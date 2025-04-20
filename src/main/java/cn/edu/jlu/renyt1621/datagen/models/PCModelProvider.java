@@ -1,5 +1,6 @@
 package cn.edu.jlu.renyt1621.datagen.models;
 
+import cn.edu.jlu.renyt1621.datagen.models.maps.PCBlockModelMap;
 import cn.edu.jlu.renyt1621.datagen.models.maps.PCItemModelMap;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -16,6 +17,8 @@ import org.jetbrains.annotations.NotNull;
 public class PCModelProvider
     extends FabricModelProvider
 {
+    private static final PCItemModelMap ITEM_MODEL_MAP = PCItemModelMap.instance();
+    private static final PCBlockModelMap BLOCK_MODEL_MAP = PCBlockModelMap.instance();
 
     public PCModelProvider(FabricDataOutput output) {
         super(output);
@@ -26,7 +29,9 @@ public class PCModelProvider
      */
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-        // blockStateModelGenerator.re
+        BLOCK_MODEL_MAP.getSimpleCubeAllBlocks()
+            .forEach(blockStateModelGenerator::registerSimpleCubeAll);
+
     }
 
     /**
@@ -34,7 +39,7 @@ public class PCModelProvider
      */
     @Override
     public void generateItemModels(@NotNull ItemModelGenerator itemModelGenerator) {
-        PCItemModelMap.instance().get()
+        ITEM_MODEL_MAP.get()
             .forEach(itemModelGenerator::register);
     }
 }

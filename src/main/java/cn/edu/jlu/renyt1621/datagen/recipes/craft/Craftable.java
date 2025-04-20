@@ -1,4 +1,4 @@
-package cn.edu.jlu.renyt1621.reg.recipes;
+package cn.edu.jlu.renyt1621.datagen.recipes.craft;
 
 /**
  * <h1>Description</h1>

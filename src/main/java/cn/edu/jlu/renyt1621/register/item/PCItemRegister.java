@@ -1,12 +1,12 @@
-package cn.edu.jlu.renyt1621.reg.item;
+package cn.edu.jlu.renyt1621.register.item;
 
 import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import cn.edu.jlu.renyt1621.datagen.models.maps.PCItemModelMap;
 import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapedRecipeMap;
 import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapelessRecipeMap;
-import cn.edu.jlu.renyt1621.reg.PCRegister;
-import cn.edu.jlu.renyt1621.reg.recipes.PCShapedRecipe;
-import cn.edu.jlu.renyt1621.reg.recipes.PCShapelessRecipe;
+import cn.edu.jlu.renyt1621.register.PCRegister;
+import cn.edu.jlu.renyt1621.datagen.recipes.craft.PCShapedRecipe;
+import cn.edu.jlu.renyt1621.datagen.recipes.craft.PCShapelessRecipe;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.client.data.Model;
 import net.minecraft.data.recipe.ShapedRecipeJsonBuilder;
@@ -29,15 +29,22 @@ import java.util.function.Function;
  * <h1>Usages</h1>
  * Below is a usage:
  * <blockquote><pre>
- *     public static final Block BLOCK = PCBlockRegister.create(MOD_ID, "block")
- *         .settings(
- *             AbstractBlock.Settings.create()
- *                 .burnable()
- *                 .mapColor(DyeColor.BROWN)
- *         )
+ *     public static final Item ITEM1 = PCItemRegister.create(MOD_ID, "item1")
  *         .registerAndBuild()
- *         .translate(Language.EN_US, "Test Block1")
- *         .translate(Language.ZH_CN, "测试方块1")
+ *         .shapedRecipe(PCShapedRecipe.Builder.create()
+ *             .pattern("***")
+ *             .pattern("***")
+ *             .pattern(" # ")
+ *             .definition('*', Items.ACACIA_PLANKS)
+ *             .definition('#', Items.ACACIA_BUTTON)
+ *             .category(RecipeCategory.BUILDING_BLOCKS)
+ *             .criterion("has_item", Items.ACACIA_PLANKS)
+ *             .count(4)
+ *             .build()
+ *         )
+ *         .translate(Language.EN_US, "Test Item1")
+ *         .translate(Language.ZH_CN, "测试物品1")
+ *         .model(Models.GENERATED)
  *         .get();
  * </pre></blockquote>
  *
@@ -52,9 +59,6 @@ public class PCItemRegister
     private Item.Settings settings = new Item.Settings();
     private Function<Item.Settings, Item> factory = Item::new;
     private ShapedRecipeJsonBuilder builder;
-
-
-    // private List<PCShapelessRecipe> shapelessRecipes = new ArrayList<>();
 
 
     private PCItemRegister(Identifier id) {
@@ -156,19 +160,50 @@ public class PCItemRegister
     }
 
 
+    /**
+     * <p>
+     *     Set the model of the item.
+     * </p>
+     *
+     * <p>
+     *     The model will be added to the {@link PCItemModelMap}.<br>
+     *     Use {@link cn.edu.jlu.renyt1621.datagen.factorys.PCModelProviderFactory} to generate the model.
+     * </p>
+     * @param model The model of the item
+     * @return This item register
+     * @see cn.edu.jlu.renyt1621.datagen.factorys.PCModelProviderFactory
+     */
     public PCItemRegister model(Model model) {
         checkNotNull("model(Model)");
         PCItemModelMap.instance().put(this.t, model);
         return this;
     }
 
-    // Below are recipes.
+    /**
+     * <p>
+     *     Provide a shaped recipe for the item.
+     * </p>
+     *
+     * <p>
+     *     The recipe will be added to the {@link PCShapedRecipeMap}.<br>
+     *     Use the class {@link cn.edu.jlu.renyt1621.datagen.factorys.PCRecipesProviderFactory} to generate the recipe.
+     * </p>
+     * @param shapedRecipe The shaped recipe to add
+     * @return This item register
+     */
     public PCItemRegister shapedRecipe(PCShapedRecipe shapedRecipe) {
         checkNotNull("shapelessRecipe(List, int)");
         PCShapedRecipeMap.instance().put(shapedRecipe, this.t);
         return this;
     }
 
+    /**
+     * <p>
+     *     Provide a list if shaped recipe for the item.
+     * </p>
+     * @param shapedRecipes The list of the shaped recipe.
+     * @return This item register
+     */
     public PCItemRegister shapedRecipe(List<PCShapedRecipe> shapedRecipes) {
         checkNotNull("shapelessRecipe(List, int)");
         PCShapedRecipeMap shapedRecipeMap = PCShapedRecipeMap.instance();
@@ -176,12 +211,39 @@ public class PCItemRegister
         return this;
     }
 
+    /**
+     * <p>
+     *     Provide a shapeless recipe for the item.
+     * </p>
+     *
+     * <p>
+     *     The recipe will be added to the {@link PCShapelessRecipeMap}.<br>
+     *     Use the class {@link cn.edu.jlu.renyt1621.datagen.factorys.PCRecipesProviderFactory} to generate the recipe.
+     * </p>
+     *
+     * @param shapelessRecipe The shapeless recipe of the item
+     * @return This item register
+     * @see cn.edu.jlu.renyt1621.datagen.factorys.PCRecipesProviderFactory
+     */
     public PCItemRegister shapelessRecipe(PCShapelessRecipe shapelessRecipe) {
         checkNotNull("shapelessRecipe(List, int)");
         PCShapelessRecipeMap.instance().put(shapelessRecipe, this.t);
         return this;
     }
 
+    /**
+     * <p>
+     *     Provide a list of shapeless recipe for the item.
+     * </p>
+     *
+     * <p>
+     *     The recipe will be added to the {@link PCShapelessRecipeMap}.<br>
+     *     Use the class {@link cn.edu.jlu.renyt1621.datagen.factorys.PCRecipesProviderFactory} to generate the recipe.
+     * </p>
+     *
+     * @param shapelessRecipes The list of the shapeless recipe.
+     * @return This item register
+     */
     public PCItemRegister shapelessRecipe(List<PCShapelessRecipe> shapelessRecipes) {
         checkNotNull("shapelessRecipe(List, int)");
         PCShapelessRecipeMap shapedRecipeMap = PCShapelessRecipeMap.instance();
@@ -208,12 +270,12 @@ public class PCItemRegister
      * @return The register.
      * @see PCLanguageProvider
      */
-    @Override
-    public PCItemRegister translate(Language lang, String value) {
-        checkNotNull("translate(Language, String)");
-        PCLanguageProvider.LangMap.instance().put(lang, this.t.getTranslationKey(), value);
-        return this;
-    }
+    // @Override
+    // public PCItemRegister translate(Language lang, String value) {
+    //     checkNotNull("translate(Language, String)");
+    //     PCLanguageProvider.LangMap.instance().put(lang, this.t.getTranslationKey(), value);
+    //     return this;
+    // }
 
     @Override
     protected PCItemRegister self() {
