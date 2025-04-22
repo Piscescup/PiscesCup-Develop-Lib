@@ -33,7 +33,7 @@ import java.util.function.Function;
  * <h1>Usages</h1>
  * Below is a usage:
  * <blockquote><pre>
- *     public static final Block BLOCK = PCBlockRegister.create(MOD_ID, "block")
+ *     public static final Block BLOCK = PCBlockRegister.create(MOD_ID, "block1")
  *         .settings(
  *             AbstractBlock.Settings.create()
  *                 .burnable()
@@ -42,6 +42,7 @@ import java.util.function.Function;
  *         .registerAndBuild()
  *         .translate(Language.EN_US, "Test Block1")
  *         .translate(Language.ZH_CN, "测试方块1")
+ *         .simpleCubeAll()
  *         .get();
  * </pre></blockquote>
  *
@@ -234,20 +235,21 @@ public class PCBlockRegister
     }
 
 
-
+    @Deprecated
     public PCBlockRegister dropWithFortune(Item itemDropped, int min, int max) {
         checkNotNull("dropWithFortune(Item, int, int)");
 
         return this;
     }
 
-
+    @Deprecated
     public PCBlockRegister dropWithSilkTouch(Block blockDropped) {
 
 
         return this;
     }
 
+    @Deprecated
     public PCBlockRegister drop(Block blockDropped) {
         checkNotNull("drop(Block)");
 
@@ -255,6 +257,7 @@ public class PCBlockRegister
         return this;
     }
 
+    @Deprecated
     public PCBlockRegister dropSelf() {
         checkNotNull("dropSelf()");
         return drop(this.t);

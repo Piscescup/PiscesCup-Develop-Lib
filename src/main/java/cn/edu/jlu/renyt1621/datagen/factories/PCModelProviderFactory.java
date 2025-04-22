@@ -1,25 +1,25 @@
-package cn.edu.jlu.renyt1621.datagen.factorys;
+package cn.edu.jlu.renyt1621.datagen.factories;
 
-import cn.edu.jlu.renyt1621.datagen.recipes.PCRecipeProvider;
+import cn.edu.jlu.renyt1621.datagen.models.PCModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.data.DataProvider;
-import net.minecraft.registry.RegistryWrapper;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * @author REN YuanTong
- * @Date 2025-04-18
+ * @Date 2025-04-17
  * @since 1.0.0
  */
-public final class PCRecipesProviderFactory {
-    private PCRecipesProviderFactory() {}
+public final class PCModelProviderFactory {
+    private PCModelProviderFactory() {}
 
     /**
      * <p>
-     * Provide a list of {@code FabricDataGenerator.Pack.RegistryDependentFactory} for recipe provider.
+     * Provide a list of {@code FabricDataGenerator.Pack.RegistryDependentFactory} for model provider.
      * </p>
      *
      * <p>
@@ -38,8 +38,8 @@ public final class PCRecipesProviderFactory {
      *    public void onInitializeDataGenerator(FabricDataGenerator generator) {
      * 		  FabricDataGenerator.Pack pack = generator.createPack();
      *
-     * 		  PCRecipesProviderFactory.recipesProvider()
-     * 			  .forEach(pack::addProvider);
+     * 		  PCModelProviderFactory.modelProvider()
+     * 			.forEach(pack::addProvider);
      *
      *    }
      * }
@@ -48,9 +48,10 @@ public final class PCRecipesProviderFactory {
      *
      * @return A list of {@code RegistryDependentFactory} for recipe provider
      */
-    public static List<FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>> recipesProvider() {
+    @Contract(value = " -> new", pure = true)
+    public static @NotNull @Unmodifiable List<FabricDataGenerator.Pack.Factory<? extends DataProvider>> modelProvider() {
         return List.of(
-            PCRecipeProvider::new
+            PCModelProvider::new
         );
     }
 

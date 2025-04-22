@@ -9,17 +9,17 @@ import net.minecraft.util.DyeColor;
 import static cn.edu.jlu.renyt1621.References.MOD_ID;
 
 /**
+ * Test blocks
+ *
  * @author REN YuanTong
- * @Description
  * @Date 2025-04-14
- * @Time 15:04
  */
 public class ModBlocks {
     public static final Block BLOCK = PCBlockRegister.create(MOD_ID, "block1")
-        .settings(
-            AbstractBlock.Settings.create()
-                .burnable()
-                .mapColor(DyeColor.BROWN)
+        .settings(AbstractBlock.Settings.create()
+            .burnable()
+            .mapColor(DyeColor.BROWN)
+            .hardness(1.0f)
         )
         .registerAndBuild()
         .translate(Language.EN_US, "Test Block1")
@@ -27,7 +27,6 @@ public class ModBlocks {
         .simpleCubeAll()
         .get();
 
-    // Blocks
 
     public static void register() {}
 }

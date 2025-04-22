@@ -1,4 +1,4 @@
-package cn.edu.jlu.renyt1621.datagen.factorys;
+package cn.edu.jlu.renyt1621.datagen.factories;
 
 import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
@@ -11,7 +11,6 @@ import org.jetbrains.annotations.Unmodifiable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
 
 /**
  * @author REN YuanTong

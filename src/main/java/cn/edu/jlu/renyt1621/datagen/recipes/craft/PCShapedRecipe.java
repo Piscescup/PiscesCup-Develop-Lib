@@ -1,5 +1,6 @@
 package cn.edu.jlu.renyt1621.datagen.recipes.craft;
 
+import cn.edu.jlu.renyt1621.utils.CheckUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.recipe.Ingredient;
@@ -149,7 +150,10 @@ public class PCShapedRecipe {
          * @return The PCShapedRecipe.Builder
          */
         public Builder category(RecipeCategory category) {
-            if (category == null) throw new IllegalArgumentException("Recipe Category cannot be null when using PCShapedRecipe.Builder");
+            CheckUtils.checkIsNullThenThrow(
+                category, "Category cannot be null when using PCShapedRecipe.Builder"
+            );
+
             this.category = category;
             return this;
         }
@@ -160,16 +164,9 @@ public class PCShapedRecipe {
          * @return The PCShapedRecipe.Builder
          */
         public Builder patterns(List<String> patterns) {
-            if (patterns == null)
-                throw new IllegalArgumentException(
-                    "Patterns cannot be null when using PCShapedRecipe.Builder"
-                );
-            boolean anyIsNull = patterns.stream()
-                .anyMatch(Objects::isNull);
-            if (anyIsNull)
-                throw new IllegalArgumentException(
-                    "Patterns cannot contain null when using PCShapedRecipe.Builder"
-                );
+            CheckUtils.checkAnyIsNullThenThrow(
+                Collections.singletonList(patterns), "Patterns cannot be null when using PCShapedRecipe.Builder"
+            );
 
             this.pattern.addAll(patterns);
             return this;
@@ -181,7 +178,10 @@ public class PCShapedRecipe {
          * @return The PCShapedRecipe.Builder
          */
         public Builder pattern(String pattern) {
-            if (pattern == null) throw new IllegalArgumentException("Pattern cannot be null when using PCShapedRecipe.Builder");
+            CheckUtils.checkIsNullThenThrow(
+                pattern, "Pattern cannot be null when using PCShapedRecipe.Builder"
+            );
+
             this.pattern.add(pattern);
             return this;
         }
@@ -193,8 +193,12 @@ public class PCShapedRecipe {
          * @return The PCShapedRecipe.Builder
          */
         public Builder definition(Character symbol, Ingredient ingredient) {
-            if (symbol == null) throw new IllegalArgumentException("Symbol cannot be null when using PCShapedRecipe.Builder");
-            if (ingredient == null) throw new IllegalArgumentException("Ingredient cannot be null when using PCShapedRecipe.Builder");
+            CheckUtils.checkIsNullThenThrow(
+                symbol, "Symbol cannot be null when using PCShapedRecipe.Builder"
+            );
+            CheckUtils.checkIsNullThenThrow(
+                ingredient, "Ingredient cannot be null when using PCShapedRecipe.Builder"
+            );
             this.definitions.put(symbol, ingredient);
             return this;
         }
@@ -206,8 +210,12 @@ public class PCShapedRecipe {
          * @return The PCShapedRecipe.Builder
          */
         public Builder definition(Character symbol, TagKey<Item> tag) {
-            if (symbol == null) throw new IllegalArgumentException("Symbol cannot be null when using PCShapedRecipe.Builder");
-            if (tag == null) throw new IllegalArgumentException("Tag cannot be null");
+            CheckUtils.checkIsNullThenThrow(
+                symbol, "Symbol cannot be null when using PCShapedRecipe.Builder"
+            );
+            CheckUtils.checkIsNullThenThrow(
+                tag, "Tag cannot be null when using PCShapedRecipe.Builder"
+            );
             this.tagDefinitions.put(symbol, tag);
             return this;
         }
@@ -219,7 +227,12 @@ public class PCShapedRecipe {
          * @return The PCShapedRecipe.Builder
          */
         public Builder definition(Character symbol, ItemConvertible item) {
-            if (symbol == null) throw new IllegalArgumentException("Symbol cannot be null when using PCShapedRecipe.Builder");
+            CheckUtils.checkIsNullThenThrow(
+                symbol, "Symbol cannot be null when using PCShapedRecipe.Builder"
+            );
+            CheckUtils.checkIsNullThenThrow(
+                item, "Item cannot be null when using PCShapedRecipe.Builder"
+            );
             return definition(symbol, Ingredient.ofItem(item));
         }
 
@@ -230,9 +243,12 @@ public class PCShapedRecipe {
          * @return The PCShapedRecipe.Builder
          */
         public Builder criterion(String criterionName, Item item) {
-            if (criterionName == null) throw new IllegalArgumentException("Criterion Name cannot be null when using PCShapedRecipe.Builder");
-            if (item == null) throw new IllegalArgumentException("Criterion cannot be null when using PCShapedRecipe.Builder");
-
+            CheckUtils.checkIsNullThenThrow(
+                criterionName, "Criterion Name cannot be null when using PCShapedRecipe.Builder"
+            );
+            CheckUtils.checkIsNullThenThrow(
+                item, "Criterion cannot be null when using PCShapedRecipe.Builder"
+            );
             this.criteria.put(criterionName, item);
 
             return this;

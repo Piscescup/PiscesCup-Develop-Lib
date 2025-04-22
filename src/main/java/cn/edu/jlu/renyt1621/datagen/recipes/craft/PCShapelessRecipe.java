@@ -1,5 +1,6 @@
 package cn.edu.jlu.renyt1621.datagen.recipes.craft;
 
+import cn.edu.jlu.renyt1621.utils.CheckUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.recipe.Ingredient;
@@ -76,53 +77,58 @@ public class PCShapelessRecipe {
         }
 
         public Builder category(RecipeCategory category) {
-            if (category == null) throw new IllegalArgumentException("Recipe Category cannot be null when using PCShapelessRecipe.Builder");
+            CheckUtils.checkIsNullThenThrow(
+                category, "Recipe Category cannot be null when using PCShapelessRecipe.Builder"
+            );
+
             this.category = category;
             return this;
         }
 
         public Builder input(Ingredient ingredient) {
-            if (ingredient == null) throw new IllegalArgumentException("Ingredient cannot be null when using PCShapelessRecipe.Builder");
+            CheckUtils.checkIsNullThenThrow(
+                ingredient, "Ingredient cannot be null when using PCShapelessRecipe.Builder"
+            );
             this.ingredients.add(ingredient);
             return this;
         }
 
         public Builder input(Ingredient... ingredients) {
-            if (ingredients == null)
-                throw new IllegalArgumentException("Ingredients cannot be null when using PCShapelessRecipe.Builder");
+            List<Ingredient> ingredientList = Arrays.asList(ingredients);
+            CheckUtils.checkAnyIsNullThenThrow(
+                Collections.singletonList(ingredientList), "Ingredients cannot be null when using PCShapelessRecipe.Builder"
+            );
 
-            boolean anyIsNull = Arrays.stream(ingredients)
-                .anyMatch(Objects::isNull);
-            if (anyIsNull)
-                throw new IllegalArgumentException("Ingredient cannot contain null when using PCShapelessRecipe.Builder");
-
-            this.ingredients.addAll(Arrays.asList(ingredients));
+            this.ingredients.addAll(ingredientList);
 
             return this;
         }
 
         public Builder input(ItemConvertible item) {
-            if (item == null) throw new IllegalArgumentException("Ingredient cannot be null when using PCShapelessRecipe.Builder");
+            CheckUtils.checkIsNullThenThrow(
+                item, "Item cannot be null when using PCShapelessRecipe.Builder"
+            );
+
             this.ingredients.add(Ingredient.ofItem(item));
             return this;
         }
 
         public Builder input(ItemConvertible... items) {
-            boolean anyIsNull = Arrays.stream(items)
-                .anyMatch(Objects::isNull);
-            if (anyIsNull) throw new IllegalArgumentException("Ingredient cannot be null when using PCShapelessRecipe.Builder");
-            Arrays.stream(items)
+            List<Ingredient> itemList = Arrays.stream(items)
                 .map(Ingredient::ofItem)
-                .forEach(this.ingredients::add);
+                .toList();
+            CheckUtils.checkAnyIsNullThenThrow(
+                Collections.singletonList(itemList), "Items cannot be null when using PCShapelessRecipe.Builder"
+            );
 
+            this.ingredients.addAll(itemList);
             return this;
         }
 
         public Builder input(List<ItemConvertible> items) {
-            if (items == null) throw new IllegalArgumentException("Ingredients cannot be null when using PCShapelessRecipe.Builder");
-            boolean anyIsNull = items.stream()
-                .anyMatch(Objects::isNull);
-            if (anyIsNull) throw new IllegalArgumentException("Ingredient cannot be null when using PCShapelessRecipe.Builder");
+            CheckUtils.checkAnyIsNullThenThrow(
+                Collections.singletonList(items), "Items cannot be null when using PCShapelessRecipe.Builder"
+            );
 
             items.stream()
                 .map(Ingredient::ofItem)
@@ -132,7 +138,9 @@ public class PCShapelessRecipe {
         }
 
         public Builder input(TagKey<Item> tag) {
-            if (tag == null) throw new IllegalArgumentException("Tag cannot be null when using PCShapelessRecipe.Builder");
+            CheckUtils.checkIsNullThenThrow(
+                tag, "Tag cannot be null when using PCShapelessRecipe.Builder"
+            );
             this.tagItem.add(tag);
             return this;
         }
@@ -143,8 +151,13 @@ public class PCShapelessRecipe {
         }
 
         public Builder criterion(String criterionName, Item item) {
-            if (criterionName == null) throw new IllegalArgumentException("Criterion name cannot be null when using PCShapelessRecipe.Builder");
-            if (item == null) throw new IllegalArgumentException("Item cannot be null when using PCShapelessRecipe.Builder");
+            CheckUtils.checkIsNullThenThrow(
+                criterionName, "Criterion Name cannot be null when using PCShapelessRecipe.Builder"
+            );
+
+            CheckUtils.checkIsNullThenThrow(
+                item, "Criterion cannot be null when using PCShapelessRecipe.Builder"
+            );
             this.criteria.put(criterionName, item);
             return this;
         }

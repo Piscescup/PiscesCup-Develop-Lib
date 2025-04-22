@@ -1,25 +1,22 @@
-package cn.edu.jlu.renyt1621.datagen.factorys;
+package cn.edu.jlu.renyt1621.datagen.factories;
 
-import cn.edu.jlu.renyt1621.datagen.models.PCModelProvider;
+import cn.edu.jlu.renyt1621.datagen.recipes.PCRecipeProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.data.DataProvider;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Unmodifiable;
 
 import java.util.List;
 
 /**
  * @author REN YuanTong
- * @Date 2025-04-17
+ * @Date 2025-04-18
  * @since 1.0.0
  */
-public final class PCModelProviderFactory {
-    private PCModelProviderFactory() {}
+public final class PCRecipesProviderFactory {
+    private PCRecipesProviderFactory() {}
 
     /**
      * <p>
-     * Provide a list of {@code FabricDataGenerator.Pack.RegistryDependentFactory} for model provider.
+     * Provide a list of {@code FabricDataGenerator.Pack.RegistryDependentFactory} for recipe provider.
      * </p>
      *
      * <p>
@@ -38,8 +35,8 @@ public final class PCModelProviderFactory {
      *    public void onInitializeDataGenerator(FabricDataGenerator generator) {
      * 		  FabricDataGenerator.Pack pack = generator.createPack();
      *
-     * 		  PCModelProviderFactory.modelProvider()
-     * 			.forEach(pack::addProvider);
+     * 		  PCRecipesProviderFactory.recipesProvider()
+     * 			  .forEach(pack::addProvider);
      *
      *    }
      * }
@@ -48,10 +45,9 @@ public final class PCModelProviderFactory {
      *
      * @return A list of {@code RegistryDependentFactory} for recipe provider
      */
-    @Contract(value = " -> new", pure = true)
-    public static @NotNull @Unmodifiable List<FabricDataGenerator.Pack.Factory<? extends DataProvider>> modelProvider() {
+    public static List<FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>> recipesProvider() {
         return List.of(
-            PCModelProvider::new
+            PCRecipeProvider::new
         );
     }
 

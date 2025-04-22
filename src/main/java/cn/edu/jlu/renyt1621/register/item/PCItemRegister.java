@@ -7,7 +7,6 @@ import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapelessRecipeMap;
 import cn.edu.jlu.renyt1621.register.PCRegister;
 import cn.edu.jlu.renyt1621.datagen.recipes.craft.PCShapedRecipe;
 import cn.edu.jlu.renyt1621.datagen.recipes.craft.PCShapelessRecipe;
-import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.client.data.Model;
 import net.minecraft.data.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.item.*;
@@ -167,11 +166,11 @@ public class PCItemRegister
      *
      * <p>
      *     The model will be added to the {@link PCItemModelMap}.<br>
-     *     Use {@link cn.edu.jlu.renyt1621.datagen.factorys.PCModelProviderFactory} to generate the model.
+     *     Use {@link cn.edu.jlu.renyt1621.datagen.factories.PCModelProviderFactory} to generate the model.
      * </p>
      * @param model The model of the item
      * @return This item register
-     * @see cn.edu.jlu.renyt1621.datagen.factorys.PCModelProviderFactory
+     * @see cn.edu.jlu.renyt1621.datagen.factories.PCModelProviderFactory
      */
     public PCItemRegister model(Model model) {
         checkNotNull("model(Model)");
@@ -186,7 +185,7 @@ public class PCItemRegister
      *
      * <p>
      *     The recipe will be added to the {@link PCShapedRecipeMap}.<br>
-     *     Use the class {@link cn.edu.jlu.renyt1621.datagen.factorys.PCRecipesProviderFactory} to generate the recipe.
+     *     Use the class {@link cn.edu.jlu.renyt1621.datagen.factories.PCRecipesProviderFactory} to generate the recipe.
      * </p>
      * @param shapedRecipe The shaped recipe to add
      * @return This item register
@@ -218,12 +217,12 @@ public class PCItemRegister
      *
      * <p>
      *     The recipe will be added to the {@link PCShapelessRecipeMap}.<br>
-     *     Use the class {@link cn.edu.jlu.renyt1621.datagen.factorys.PCRecipesProviderFactory} to generate the recipe.
+     *     Use the class {@link cn.edu.jlu.renyt1621.datagen.factories.PCRecipesProviderFactory} to generate the recipe.
      * </p>
      *
      * @param shapelessRecipe The shapeless recipe of the item
      * @return This item register
-     * @see cn.edu.jlu.renyt1621.datagen.factorys.PCRecipesProviderFactory
+     * @see cn.edu.jlu.renyt1621.datagen.factories.PCRecipesProviderFactory
      */
     public PCItemRegister shapelessRecipe(PCShapelessRecipe shapelessRecipe) {
         checkNotNull("shapelessRecipe(List, int)");
@@ -238,7 +237,7 @@ public class PCItemRegister
      *
      * <p>
      *     The recipe will be added to the {@link PCShapelessRecipeMap}.<br>
-     *     Use the class {@link cn.edu.jlu.renyt1621.datagen.factorys.PCRecipesProviderFactory} to generate the recipe.
+     *     Use the class {@link cn.edu.jlu.renyt1621.datagen.factories.PCRecipesProviderFactory} to generate the recipe.
      * </p>
      *
      * @param shapelessRecipes The list of the shapeless recipe.
