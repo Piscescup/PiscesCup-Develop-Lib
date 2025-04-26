@@ -1,9 +1,6 @@
 package cn.edu.jlu.renyt1621;
 
-import cn.edu.jlu.renyt1621.datagen.factories.PCLanguageProviderFactory;
-import cn.edu.jlu.renyt1621.datagen.factories.PCModelProviderFactory;
-import cn.edu.jlu.renyt1621.datagen.factories.PCRecipesProviderFactory;
-import cn.edu.jlu.renyt1621.datagen.factories.PCTagProviderFactory;
+import cn.edu.jlu.renyt1621.datagen.factories.*;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -22,11 +19,10 @@ public class PiscesCupDevelopLibDataGenerator implements DataGeneratorEntrypoint
 		PCRecipesProviderFactory.recipesProvider()
 			.forEach(pack::addProvider);
 
-		PCTagProviderFactory.ITEM_TAG_PROVIDER.getFactories()
+		PCTagProviderFactory.allTagProviderFactories()
 			.forEach(pack::addProvider);
 
-		PCTagProviderFactory.BLOCK_TAG_PROVIDER.getFactories()
+		PCLootTableProviderFactory.allLootTableProviderFactories()
 			.forEach(pack::addProvider);
-
 	}
 }

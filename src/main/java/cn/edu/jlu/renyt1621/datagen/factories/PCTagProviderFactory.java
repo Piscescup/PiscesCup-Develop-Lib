@@ -5,6 +5,7 @@ import cn.edu.jlu.renyt1621.datagen.tag.PCItemTagProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.data.DataProvider;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,8 +33,15 @@ public enum PCTagProviderFactory {
         this.factories = factories;
     }
 
-    public List<FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>> getFactories() {
+    public List<FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>> factories() {
         return factories;
+    }
+
+    public static List<FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>> allTagProviderFactories() {
+        return Arrays.stream(PCTagProviderFactory.values())
+            .map(PCTagProviderFactory::factories)
+            .flatMap(List::stream)
+            .toList();
     }
 
 }

@@ -5,7 +5,6 @@ import cn.edu.jlu.renyt1621.datagen.tag.map.PCItemTagKeyMap;
 import cn.edu.jlu.renyt1621.register.PCRegister;
 import cn.edu.jlu.renyt1621.utils.CheckUtils;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
@@ -44,6 +43,10 @@ public class PCItemTagKeyRegister
         return new PCItemTagKeyRegister(Identifier.of(namespace, path));
     }
 
+    public static PCItemTagKeyRegister createForVanilla(TagKey<Item> vanillaTag) {
+        return new PCItemTagKeyRegister(vanillaTag.id());
+    }
+
 
     @Override
     public PCItemTagKeyRegister registerAndBuild() {
@@ -57,7 +60,7 @@ public class PCItemTagKeyRegister
         return this;
     }
 
-    public PCItemTagKeyRegister add(Item item) {
+    public PCItemTagKeyRegister addItem(Item item) {
         CheckUtils.checkIsNullThenThrow(
             item, "Item cannot be null when using PCItemTagKeyRegister.Builder"
         );
@@ -65,17 +68,17 @@ public class PCItemTagKeyRegister
         return this;
     }
 
-    public PCItemTagKeyRegister add(Item... items) {
-
+    @SuppressWarnings("unchecked")
+    public PCItemTagKeyRegister addItems(List<Item> items) {
         CheckUtils.checkAnyIsNullThenThrow(
-            List.of(items), "Items cannot be null when using PCItemTagKeyRegister.Builder"
+            Collections.singletonList(items), "Items cannot be null when using PCItemTagKeyRegister.Builder"
         );
 
         this.pcItemTag.addItems(items);
         return this;
     }
 
-    public PCItemTagKeyRegister add(TagKey<Item> tag) {
+    public PCItemTagKeyRegister addTag(TagKey<Item> tag) {
         CheckUtils.checkIsNullThenThrow(
             tag, "Tag cannot be null when using PCItemTagKeyRegister.Builder"
         );

@@ -47,8 +47,8 @@ public class PCItemTag {
         return tags.add(tag);
     }
 
-    public boolean addItems(Item... items) {
-        Collections.addAll(this.items, items);
+    public boolean addItems(List<Item> items) {
+        this.items.addAll(items);
         return true;
     }
 

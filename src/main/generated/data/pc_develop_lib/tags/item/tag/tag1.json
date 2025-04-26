@@ -1,6 +1,10 @@
 {
   "values": [
     "pc_develop_lib:item1",
-    "pc_develop_lib:item2"
+    "pc_develop_lib:item2",
+    {
+      "id": "#minecraft:planks",
+      "required": false
+    }
   ]
 }

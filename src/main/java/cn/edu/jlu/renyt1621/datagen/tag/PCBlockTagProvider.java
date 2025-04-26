@@ -9,6 +9,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 
 import java.util.List;
@@ -39,6 +40,7 @@ public class PCBlockTagProvider
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+
         BLOCK_TAG_MAP.forEach(
             (tagKey, blockTag) -> {
                 List<Block> blocks = blockTag.getBlocks();

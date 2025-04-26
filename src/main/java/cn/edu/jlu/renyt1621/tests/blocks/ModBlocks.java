@@ -4,6 +4,7 @@ import cn.edu.jlu.renyt1621.register.block.PCBlockRegister;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.item.Items;
 import net.minecraft.util.DyeColor;
 
 import static cn.edu.jlu.renyt1621.References.MOD_ID;
@@ -20,11 +21,13 @@ public class ModBlocks {
             .burnable()
             .mapColor(DyeColor.BROWN)
             .hardness(1.0f)
+            .requiresTool()
         )
         .registerAndBuild()
         .translate(Language.EN_US, "Test Block1")
         .translate(Language.ZH_CN, "测试方块1")
         .simpleCubeAll()
+        .drop(Items.DIAMOND, 18)
         .get();
 
 

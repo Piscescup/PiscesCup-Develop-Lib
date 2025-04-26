@@ -45,8 +45,8 @@ public class PCBlockTag {
         return blocks.add(block);
     }
 
-    public void addBlocks(Block... blocks) {
-        Collections.addAll(this.blocks, blocks);
+    public void addBlocks(List<Block> blocks) {
+        this.blocks.addAll(blocks);
     }
 
     public boolean addTag(TagKey<Block> tag) {

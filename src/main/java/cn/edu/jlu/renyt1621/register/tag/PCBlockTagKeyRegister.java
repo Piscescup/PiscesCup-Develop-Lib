@@ -6,16 +6,23 @@ import cn.edu.jlu.renyt1621.register.PCRegister;
 import cn.edu.jlu.renyt1621.utils.CheckUtils;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * <h2>Description</h2>
+ * A util for registering block tag keys.
  *
  * <h2>Usages</h2>
+ * Below is a simple usage:
+ * <blockquote><pre>
  *
+ * </pre></blockquote>
  * @author REN YuanTong
  * @Date 2025-04-21
  * @since 1.0.0
@@ -31,6 +38,10 @@ public class PCBlockTagKeyRegister
         this.pcBlockTag = new PCBlockTag(this.t);
     }
 
+    public static PCBlockTagKeyRegister createForVanilla(TagKey<Block> vanillaBlockTagKey) {
+        return new PCBlockTagKeyRegister(vanillaBlockTagKey.id());
+    }
+
     public static PCBlockTagKeyRegister create(String path) {
         return new PCBlockTagKeyRegister(Identifier.of(path));
     }
@@ -43,7 +54,7 @@ public class PCBlockTagKeyRegister
         return new PCBlockTagKeyRegister(Identifier.of(namespace, path));
     }
 
-    public PCBlockTagKeyRegister add(Block block) {
+    public PCBlockTagKeyRegister addBlock(Block block) {
         checkNotNull("add(Block)");
         CheckUtils.checkIsNullThenThrow(
             block, "Block cannot be null when using PCBlockTagKeyRegister"
@@ -53,7 +64,7 @@ public class PCBlockTagKeyRegister
         return this;
     }
 
-    public PCBlockTagKeyRegister add(TagKey<Block> tag) {
+    public PCBlockTagKeyRegister addTag(TagKey<Block> tag) {
         checkNotNull("add(TagKey<Block>)");
         CheckUtils.checkIsNullThenThrow(
             tag, "Tag cannot be null when using PCBlockTagKeyRegister"
@@ -63,17 +74,18 @@ public class PCBlockTagKeyRegister
         return this;
     }
 
-    public PCBlockTagKeyRegister add(Block... blocks) {
-        checkNotNull("add(Block...)");
+    @SuppressWarnings("unchecked")
+    public PCBlockTagKeyRegister addBlocks(List<Block> blocks) {
+        checkNotNull("add(List<Block>)");
         CheckUtils.checkAnyIsNullThenThrow(
-            List.of(blocks), "Blocks cannot be null when using PCBlockTagKeyRegister.add(Block...)"
+            Collections.singletonList(blocks), "Blocks cannot be null when using PCBlockTagKeyRegister.add(Block...)"
         );
 
         this.pcBlockTag.addBlocks(blocks);
         return this;
     }
 
-    public PCBlockTagKeyRegister add(List<TagKey<Block>> tags) {
+    public PCBlockTagKeyRegister addTags(List<TagKey<Block>> tags) {
         checkNotNull("add(List<TagKey<Block>>)");
         CheckUtils.checkAnyIsNullThenThrow(
             List.of(tags), "Tags cannot be null when using PCBlockTagKeyRegister.add(TagKey...)"
@@ -100,5 +112,27 @@ public class PCBlockTagKeyRegister
     protected PCBlockTagKeyRegister self() {
         return this;
     }
+
+    public static final PCBlockTagKeyRegister VANILLA_NEED_IRON_TOOLS_TAG =
+        PCBlockTagKeyRegister.createForVanilla(BlockTags.NEEDS_IRON_TOOL);
+
+    public static final PCBlockTagKeyRegister VANILLA_NEED_DIAMOND_TOOLS_TAG =
+        PCBlockTagKeyRegister.createForVanilla(BlockTags.NEEDS_DIAMOND_TOOL);
+
+    public static final PCBlockTagKeyRegister VANILLA_NEED_STONE_TOOLS_TAG =
+        PCBlockTagKeyRegister.createForVanilla(BlockTags.NEEDS_STONE_TOOL);
+
+
+    public static final PCBlockTagKeyRegister VANILLA_PICKAXE_TAG =
+        PCBlockTagKeyRegister.createForVanilla(BlockTags.PICKAXE_MINEABLE);
+
+    public static final PCBlockTagKeyRegister VANILLA_SHOVEL_TAG =
+        PCBlockTagKeyRegister.createForVanilla(BlockTags.SHOVEL_MINEABLE);
+
+    public static final PCBlockTagKeyRegister VANILLA_AXE_TAG =
+        PCBlockTagKeyRegister.createForVanilla(BlockTags.AXE_MINEABLE);
+
+    public static final PCBlockTagKeyRegister VANILLA_HOE_TAG =
+        PCBlockTagKeyRegister.createForVanilla(BlockTags.HOE_MINEABLE);
 
 }
