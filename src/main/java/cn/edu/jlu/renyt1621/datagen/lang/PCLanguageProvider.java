@@ -136,32 +136,26 @@ public class PCLanguageProvider
      * @Time 11:19
      */
     public static final class LangMap {
-        // private List<Language> enableLanguages;
         private final EnumMap<Language, Map<Object, String>> LANG_MAP = new EnumMap<>(Language.class);
 
         private LangMap() {
-            if (INSTANCE != null)
-                throw new IllegalStateException("LangMap is a singleton");
-
             for (Language lang : Language.values()) {
                 LANG_MAP.put(lang, new HashMap<>());
             }
         }
 
-        private static final LangMap INSTANCE = new LangMap();
+        private static volatile LangMap INSTANCE;
 
         public static LangMap instance() {
+            if (INSTANCE == null) {
+                synchronized (LangMap.class) {
+                    if (INSTANCE == null) {
+                        INSTANCE = new LangMap();
+                    }
+                }
+            }
             return INSTANCE;
         }
-        //
-        // public LangMap enableLanguages(Language... langs) {
-        //     this.enableLanguages = Arrays.stream(langs).toList();
-        //     return INSTANCE;
-        // }
-        //
-        // public void enableLanguages(List<Language> langs) {
-        //     this.enableLanguages = langs;
-        // }
 
         public void put(Language lang, Object thing, String value) {
               LANG_MAP.get(lang).put(thing, value);

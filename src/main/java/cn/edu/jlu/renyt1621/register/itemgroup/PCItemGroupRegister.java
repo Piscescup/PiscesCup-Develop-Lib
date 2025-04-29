@@ -102,14 +102,14 @@ public class PCItemGroupRegister
      * @return The register.
      * @see PCLanguageProvider
      */
-    @Override
-    public PCItemGroupRegister translate(Language lang, String value) {
-        checkNotNull("translate(Language, String)");
-
-        PCLanguageProvider.LangMap.instance().put(lang, this.translateKey, value);
-
-        return this;
-    }
+    // @Override
+    // public PCItemGroupRegister translate(Language lang, String value) {
+    //     checkNotNull("translate(Language, String)");
+    //
+    //     PCLanguageProvider.LangMap.instance().put(lang, this.translateKey, value);
+    //
+    //     return this;
+    // }
 
     @Override
     protected PCItemGroupRegister self() {

@@ -1,5 +1,6 @@
 package cn.edu.jlu.renyt1621.tests.items;
 
+import cn.edu.jlu.renyt1621.tests.items.custom.CustomItem;
 import cn.edu.jlu.renyt1621.register.item.PCBlockItemRegister;
 import cn.edu.jlu.renyt1621.register.item.PCItemRegister;
 import cn.edu.jlu.renyt1621.datagen.recipes.craft.PCShapedRecipe;
@@ -17,11 +18,14 @@ import static cn.edu.jlu.renyt1621.References.*;
 import static cn.edu.jlu.renyt1621.tests.blocks.ModBlocks.*;
 
 /**
+ * Test Items.
+ *
  * @author REN YuanTong
  * @Date 2025-04-06
  */
 public class ModItems {
     public static final Item ITEM1 = PCItemRegister.create(MOD_ID, "item1")
+        .factory(CustomItem::new)
         .registerAndBuild()
         .shapedRecipe(PCShapedRecipe.Builder.create()
             .pattern("***")

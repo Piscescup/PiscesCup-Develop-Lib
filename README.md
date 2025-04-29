@@ -132,7 +132,7 @@ public static final ItemGroup ITEM_GROUP1 = PCItemGroupRegister.create(MOD_ID, "
 The mod provides ways to register `ItemTag` and `BlockTag` 
 by using the class `PCItemTagKeyRegister.java` and `PCBlockTagKeyRegister.java`.
 
-Before you use the method `registerAndBuild()`, you should call the method `add()` to add things at least once.
+Before you use the method `registerAndBuild()`, you should use the method `add()` to add things at least once.
 
 
 Below is an example for registering `ItemTag`:
@@ -286,11 +286,11 @@ public class PiscesCupDevelopLibDataGenerator implements DataGeneratorEntrypoint
 #### Tag Provider
 The mod provides an enum class: `PCTagProviderFactory.java`. Its fields are the tag providers.
 
-The method `getFactories()` of the fields can return a list of 
+The method `factories()` of the fields can return a list of 
 `FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>` of the provider.
 And then you can use the method `forEach()` to add the provider to the pack.
 
-The enum class also provides a static method `getAllTagsProviderFactory()` 
+The enum class also provides a static method `allTagProviderFactories()` 
 , which can return a `List` of `FabricDataGenerator.Pack.RegistryDependentFactory<DataProvider>` 
 for all the tag providers.
 
@@ -311,7 +311,7 @@ public class PiscesCupDevelopLibDataGenerator implements DataGeneratorEntrypoint
 }
 ```
 
-Below is an example of the static method `getAllTagsProviderFactory()`:
+Below is an example of the static method `allTagProviderFactories()`:
 ```java
 public class PiscesCupDevelopLibDataGenerator 
     implements DataGeneratorEntrypoint 
@@ -320,10 +320,8 @@ public class PiscesCupDevelopLibDataGenerator
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
     	FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
-        PCTagProviderFactory.getAllTagsProviderFactory()
+        PCTagProviderFactory.allTagProviderFactories()
             .forEach(pack::addProvider);
     }
 }
 ```
-
-

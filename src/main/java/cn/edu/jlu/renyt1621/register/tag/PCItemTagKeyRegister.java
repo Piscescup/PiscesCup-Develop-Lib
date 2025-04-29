@@ -4,6 +4,7 @@ import cn.edu.jlu.renyt1621.datagen.tag.container.PCItemTag;
 import cn.edu.jlu.renyt1621.datagen.tag.map.PCItemTagKeyMap;
 import cn.edu.jlu.renyt1621.register.PCRegister;
 import cn.edu.jlu.renyt1621.utils.CheckUtils;
+import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
@@ -101,6 +102,14 @@ public class PCItemTagKeyRegister
     @Override
     protected PCItemTagKeyRegister self() {
         return this;
+    }
+
+    @Override
+    public PCItemTagKeyRegister translate(Language lang, String value) {
+        throw new UnsupportedOperationException(
+            "You shouldn't try to translate 'Block Tag Key': %s"
+                .formatted(this.t.id())
+        );
     }
 
 }

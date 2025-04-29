@@ -4,6 +4,7 @@ import cn.edu.jlu.renyt1621.datagen.tag.container.PCBlockTag;
 import cn.edu.jlu.renyt1621.datagen.tag.map.PCBlockTagKeyMap;
 import cn.edu.jlu.renyt1621.register.PCRegister;
 import cn.edu.jlu.renyt1621.utils.CheckUtils;
+import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
@@ -107,6 +108,13 @@ public class PCBlockTagKeyRegister
         return this;
     }
 
+    @Override
+    public PCBlockTagKeyRegister translate(Language lang, String value) {
+        throw new UnsupportedOperationException(
+            "You shouldn't try to translate 'Block Tag Key': %s"
+                .formatted(this.t.id())
+        );
+    }
 
     @Override
     protected PCBlockTagKeyRegister self() {
