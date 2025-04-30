@@ -20,27 +20,27 @@ import static cn.edu.jlu.renyt1621.References.MOD_ID;
  */
 public class ModTags {
     public static final TagKey<Item> TAG_KEY_1 = PCItemTagKeyRegister.create(MOD_ID, "tag/tag1")
-        .addItem(ModItems.ITEM1)
-        .addItem(ModItems.ITEM2)
+        .addItem(ModItems.PC_ITEM1)
+        .addItem(ModItems.PC_ITEM2)
         .addTag(ItemTags.PLANKS)
         .registerAndBuild()
         .get();
 
     public static final TagKey<Block> BLOCK_TAG = PCBlockTagKeyRegister.create(MOD_ID, "tag/block_tag")
-        .addBlock(ModBlocks.BLOCK)
+        .addBlock(ModBlocks.PC_BLOCK)
         .addTag(BlockTags.LOGS)
         .registerAndBuild()
         .get();
 
     public static final TagKey<Block> VANILLA_NEED_IRON_TOOLS_TAG =
         PCBlockTagKeyRegister.createForVanilla(BlockTags.NEEDS_IRON_TOOL)
-            .addBlock(ModBlocks.BLOCK)
+            .addBlock(ModBlocks.PC_BLOCK)
             .registerAndBuild()
             .get();
 
     public static final TagKey<Block> VANILLA_PICKAXE_TAG =
         PCBlockTagKeyRegister.createForVanilla(BlockTags.PICKAXE_MINEABLE)
-            .addBlock(ModBlocks.BLOCK)
+            .addBlock(ModBlocks.PC_BLOCK)
             .registerAndBuild()
             .get();
 

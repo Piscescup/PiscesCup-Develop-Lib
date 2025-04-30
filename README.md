@@ -9,6 +9,9 @@ such as:
    - **Data Generating**: Provide factories for getting `DataProvider`
    - ~~**GUI**: Creating a GUI (under developing)~~
 
+The examples are in the 
+[Examples Folder](src/main/java/cn/edu/jlu/renyt1621/tests).
+
 ## Usage
 ### Registering
 
@@ -152,6 +155,24 @@ public static final TagKey<Block> BLOCK_TAG = PCBlockTagKeyRegister.create(MOD_I
     .get();
 ```
 
+Both `PCItemTagKeyRegister` and `PCBlockTagKeyRegister` provide a method `createForVanilla(TagKey vanillaTagKey)` for creating 
+a `PCItemTagKeyRegister` and `PCBlockTagKeyRegister` from a vanilla tag.
+
+Below are some examples:
+```java
+public static final TagKey<Block> VANILLA_NEED_IRON_TOOLS_TAG =
+        PCBlockTagKeyRegister.createForVanilla(BlockTags.NEEDS_IRON_TOOL)
+            .addBlock(ModBlocks.PC_BLOCK)
+            .registerAndBuild()
+            .get();
+
+public static final TagKey<Block> VANILLA_PICKAXE_TAG =
+    PCBlockTagKeyRegister.createForVanilla(BlockTags.PICKAXE_MINEABLE)
+        .addBlock(ModBlocks.PC_BLOCK)
+        .registerAndBuild()
+        .get();
+```
+
 #### Recipes
 The mod provides `PCShapedRecipe.java` and `PCShapelessRecipe.java` to set the recipes for the item.
 
@@ -196,6 +217,7 @@ in the class `PCBlockRegister.java` to set the cube all model of the block.
 
 ### Data Generation
 The mod provides some `DataProviderFactory` to get the data providers.
+
 #### Language Provider
 The mod provides the class `PCTranslationProviderFactory.java` to get the translation provider.
 

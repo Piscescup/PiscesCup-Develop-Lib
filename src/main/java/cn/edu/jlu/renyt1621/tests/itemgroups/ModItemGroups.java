@@ -17,14 +17,14 @@ import static cn.edu.jlu.renyt1621.References.*;
  * @Time 15:06
  */
 public class ModItemGroups {
-    public static final ItemGroup ITEM_GROUP1 = PCItemGroupRegister.create(MOD_ID, "item_group1")
+    public static final ItemGroup PC_ITEM_GROUP1 = PCItemGroupRegister.create(MOD_ID, "item_group1")
         .itemGroupBuilder(
             ItemGroup.create(ItemGroup.Row.BOTTOM, 7)
                 .icon(() -> new ItemStack(Items.DIAMOND))
                 .entries(
                     (text, entries) -> {
-                        entries.add(ModItems.ITEM1);
-                        entries.add(ModBlocks.BLOCK);
+                        entries.add(ModItems.PC_ITEM1);
+                        entries.add(ModBlocks.PC_BLOCK);
                     }
                 )
         )
@@ -33,5 +33,5 @@ public class ModItemGroups {
         .translate(Language.ZH_CN, "测试物品组1")
         .get();
 
-    public static  void register() {}
+    public static void register() {}
 }

@@ -1,6 +1,6 @@
 package cn.edu.jlu.renyt1621.tests.items;
 
-import cn.edu.jlu.renyt1621.tests.items.custom.CustomItem;
+import cn.edu.jlu.renyt1621.tests.items.custom.PCCustomItem;
 import cn.edu.jlu.renyt1621.register.item.PCBlockItemRegister;
 import cn.edu.jlu.renyt1621.register.item.PCItemRegister;
 import cn.edu.jlu.renyt1621.datagen.recipes.craft.PCShapedRecipe;
@@ -24,8 +24,8 @@ import static cn.edu.jlu.renyt1621.tests.blocks.ModBlocks.*;
  * @Date 2025-04-06
  */
 public class ModItems {
-    public static final Item ITEM1 = PCItemRegister.create(MOD_ID, "item1")
-        .factory(CustomItem::new)
+    public static final Item PC_ITEM1 = PCItemRegister.create(MOD_ID, "item1")
+        .factory(PCCustomItem::new)
         .registerAndBuild()
         .shapedRecipe(PCShapedRecipe.Builder.create()
             .pattern("***")
@@ -43,7 +43,7 @@ public class ModItems {
         .model(Models.GENERATED)
         .get();
 
-    public static final Item ITEM2 = PCItemRegister.create(MOD_ID, "item2")
+    public static final Item PC_ITEM2 = PCItemRegister.create(MOD_ID, "item2")
         .registerAndBuild()
         .shapelessRecipe(PCShapelessRecipe.Builder.create()
             .category(RecipeCategory.BUILDING_BLOCKS)
@@ -60,7 +60,7 @@ public class ModItems {
         .get();
 
 
-    public static final Item BLOCK_ITEM = PCBlockItemRegister.create(BLOCK)
+    public static final Item PC_BLOCK_ITEM = PCBlockItemRegister.create(PC_BLOCK)
         .settings(new Item.Settings()
             .maxCount(16)
             .fireproof()

@@ -16,7 +16,7 @@ import static cn.edu.jlu.renyt1621.References.MOD_ID;
  * @Date 2025-04-14
  */
 public class ModBlocks {
-    public static final Block BLOCK = PCBlockRegister.create(MOD_ID, "block1")
+    public static final Block PC_BLOCK = PCBlockRegister.create(MOD_ID, "block1")
         .settings(AbstractBlock.Settings.create()
             .burnable()
             .mapColor(DyeColor.BROWN)

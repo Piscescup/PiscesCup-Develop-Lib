@@ -1,11 +1,9 @@
 package cn.edu.jlu.renyt1621.datagen.tag.container;
 
-import cn.edu.jlu.renyt1621.utils.CheckUtils;
 import net.minecraft.block.Block;
 import net.minecraft.registry.tag.TagKey;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,9 +21,12 @@ public class PCBlockTag {
     private final List<Block> blocks = new ArrayList<>();
     private final List<TagKey<Block>> tags = new ArrayList<>();
 
-
-    public PCBlockTag(TagKey<Block> tag) {
+    private PCBlockTag(TagKey<Block> tag) {
         this.tag = tag;
+    }
+
+    public static PCBlockTag create(TagKey<Block> tag) {
+        return new PCBlockTag(tag);
     }
 
     public TagKey<Block> getTag() {
@@ -40,25 +41,44 @@ public class PCBlockTag {
         return tags;
     }
 
+    /**
+     * Adds the given block to this tag.
+     * @param block The block to be added.
+     */
     public boolean addBlock(Block block) {
 
         return blocks.add(block);
     }
 
-    public void addBlocks(List<Block> blocks) {
-        this.blocks.addAll(blocks);
+    /**
+     * Adds the given blocks to this tag.
+     * @param blocks The blocks to be added.
+     */
+    public boolean addBlocks(List<Block> blocks) {
+        return this.blocks.addAll(blocks);
     }
 
+    /**
+     * Adds the given tag to this tag.
+     * @param tag The tag to be added.
+     */
     public boolean addTag(TagKey<Block> tag) {
-
         return tags.add(tag);
     }
 
-
-    public final void addTags(List<TagKey<Block>> tags) {
-        this.tags.addAll(tags);
+    /**
+     * Adds the given tags to this tag.
+     * @param tags The tags to be added.
+     */
+    public boolean addTags(List<TagKey<Block>> tags) {
+        return this.tags.addAll(tags);
     }
 
+    /**
+     * Returns {@code true} if this list contains no elements.
+     *
+     * @return {@code true} if this list contains no elements
+     */
     public boolean isEmpty() {
         return blocks.isEmpty() && tags.isEmpty();
     }

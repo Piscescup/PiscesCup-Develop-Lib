@@ -16,35 +16,36 @@ import java.util.Objects;
 public final class CheckUtils {
     private CheckUtils() {}
 
-    public static boolean checkIsNull(Object o) {
+    public static <T> boolean checkIsNull(T o) {
         return o == null;
     }
 
-    public static boolean checkAnyIsNull(List<Object> list) {
+    public static <T> boolean checkAnyIsNull(List<T> list) {
         return list == null || list.stream()
             .anyMatch(Objects::isNull);
     }
 
-    public static boolean checkAnyIsNull(Object... objects) {
+    @SafeVarargs
+    public static <T> boolean checkAnyIsNull(T... objects) {
         return objects == null || Arrays.stream(objects)
             .anyMatch(Objects::isNull);
     }
 
-    public static boolean checkNotNull(Object o) {
+    public static <T> boolean checkNotNull(T o) {
         return o != null;
     }
 
-    public static boolean checkAllNotNull(List<Object> o) {
+    public static <T> boolean checkAllNotNull(List<T> o) {
         return o != null && o.stream().allMatch(Objects::nonNull);
     }
 
-    public static void checkIsNullThenThrow(Object o, String throwMessage) {
+    public static <T> void checkIsNullThenThrow(T o, String throwMessage) {
         if (checkIsNull(o)) {
             throw new IllegalArgumentException(throwMessage);
         }
     }
 
-    public static void checkAnyIsNullThenThrow(List<Object> list, String throwMessage) {
+    public static <T> void checkAnyIsNullThenThrow(List<T> list, String throwMessage) {
         if (checkAnyIsNull(list)) {
             throw new IllegalArgumentException(throwMessage);
         }

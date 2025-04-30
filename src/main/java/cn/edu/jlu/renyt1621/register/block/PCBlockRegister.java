@@ -302,17 +302,6 @@ public class PCBlockRegister
     }
 
 
-    // public PCBlockRegister drop(ItemConvertible itemDropped, int from, int to) {
-    //     checkNotNull("drop(ItemConvertible, int, int)");
-    //     CheckUtils.checkIsNullThenThrow(
-    //         itemDropped, "ItemConvertible cannot be null when using PCBlockRegister.drop(ItemConvertible, int, int)"
-    //     );
-    //
-    //     return drop(PCBlockDrop.Builder.create()
-    //         .
-    //     )
-    // }
-
     public PCBlockRegister dropBuilder(LootTable.Builder lootBuilder) {
         checkNotNull("dropBuilder(LootTable.Builder)");
         CheckUtils.checkIsNullThenThrow(
@@ -332,7 +321,6 @@ public class PCBlockRegister
 
     public PCBlockRegister dropWithSilkTouch() {
         checkNotNull("dropWithSilkTouch()");
-
         return dropWithSilkTouch(this.t);
     }
 

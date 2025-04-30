@@ -40,7 +40,9 @@ import java.util.*;
  * @Date 2025-04-18
  * @since 1.0.0
  */
-public class PCShapedRecipe {
+public class PCShapedRecipe
+    implements Craftable
+{
     private final RecipeCategory category;
 
     private final List<String> pattern;
@@ -165,7 +167,7 @@ public class PCShapedRecipe {
          */
         public Builder patterns(List<String> patterns) {
             CheckUtils.checkAnyIsNullThenThrow(
-                Collections.singletonList(patterns), "Patterns cannot be null when using PCShapedRecipe.Builder"
+                patterns, "Patterns cannot be null when using PCShapedRecipe.Builder"
             );
 
             this.pattern.addAll(patterns);

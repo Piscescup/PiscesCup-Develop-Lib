@@ -16,10 +16,10 @@ import net.minecraft.world.World;
  * @Date 2025-04-27
  * @since 1.0.0
  */
-public class CustomItem
+public class PCCustomItem
     extends Item
 {
-    public CustomItem(Settings settings) {
+    public PCCustomItem(Settings settings) {
         super(settings);
     }
 

@@ -14,7 +14,9 @@ import java.util.*;
  * @Date 2025-04-18
  * @since 1.0.0
  */
-public class PCShapelessRecipe {
+public class PCShapelessRecipe
+    implements Craftable
+{
     private final RecipeCategory category;
     private final List<Ingredient> ingredients = new ArrayList<>();
     private final List<TagKey<Item>> tagItem = new ArrayList<>();
@@ -96,7 +98,7 @@ public class PCShapelessRecipe {
         public Builder input(Ingredient... ingredients) {
             List<Ingredient> ingredientList = Arrays.asList(ingredients);
             CheckUtils.checkAnyIsNullThenThrow(
-                Collections.singletonList(ingredientList), "Ingredients cannot be null when using PCShapelessRecipe.Builder"
+                ingredientList, "Ingredients cannot be null when using PCShapelessRecipe.Builder"
             );
 
             this.ingredients.addAll(ingredientList);

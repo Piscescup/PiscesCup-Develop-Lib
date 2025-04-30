@@ -251,30 +251,7 @@ public class PCItemRegister
     }
 
 
-    /**
-     * <p>
-     * Translate the {@code Item} to the language.
-     * </p>
-     *
-     * <p>
-     *     You should use {@link PCLanguageProvider} to generate the language file.
-     * </p>
-     *
-     * <p>
-     *     You should use the method{@link #registerAndBuild()} before you use this method.
-     *     Because this method is depended on the method {@link #registerAndBuild()}.
-     * </p>
-     * @param lang The language to translate.
-     * @param value The string after translation.
-     * @return The register.
-     * @see PCLanguageProvider
-     */
-    // @Override
-    // public PCItemRegister translate(Language lang, String value) {
-    //     checkNotNull("translate(Language, String)");
-    //     PCLanguageProvider.LangMap.instance().put(lang, this.t.getTranslationKey(), value);
-    //     return this;
-    // }
+
 
     @Override
     protected PCItemRegister self() {
