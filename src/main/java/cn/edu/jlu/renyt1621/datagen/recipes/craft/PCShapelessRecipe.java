@@ -7,9 +7,37 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.tag.TagKey;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 /**
+ * <h2>Description</h2>
+ * <p>
+ *     A shaped recipe class.
+ * </p>
+ *
+ * <h2>Usages</h2>
+ * <p>
+ * Use the static class {@link PCShapelessRecipe.Builder} to create a shapeless recipe.
+ * </p>
+ *
+ * <p>
+ *     Below is an example of how to use the builder:
+ * </p>
+ *
+ * <blockquote><pre>
+ * public static final PCShapelessRecipe PC_SHAPELESS_RECIPE =
+ *     PCShapelessRecipe.Builder.create()
+ *          .category(RecipeCategory.BUILDING_BLOCKS)
+ *          .input(ItemTags.PLANKS)
+ *          .input(ItemTags.BUTTONS)
+ *          .input(Items.IRON_INGOT)
+ *          .count(4)
+ *          .criterion("has_iron_ingot", Items.IRON_INGOT)
+ *          .build()
+ * </pre></blockquote>
+ *
+ *
  * @author REN YuanTong
  * @Date 2025-04-18
  * @since 1.0.0
@@ -17,6 +45,9 @@ import java.util.*;
 public class PCShapelessRecipe
     implements Craftable
 {
+    @Nullable
+    private ItemConvertible targetItem;
+
     private final RecipeCategory category;
     private final List<Ingredient> ingredients = new ArrayList<>();
     private final List<TagKey<Item>> tagItem = new ArrayList<>();
@@ -65,6 +96,8 @@ public class PCShapelessRecipe
     }
 
     public static class Builder {
+        @Nullable
+        private ItemConvertible targetItem;
         private RecipeCategory category;
         private List<Ingredient> ingredients = new ArrayList<>();
         private List<TagKey<Item>> tagItem = new ArrayList<>();
@@ -74,10 +107,30 @@ public class PCShapelessRecipe
 
         private Builder() {}
 
+        /**
+         * Create a PCShapelessRecipe.Builder
+         */
         public static Builder create() {
             return new Builder();
         }
 
+        /**
+         * Create a PCShapelessRecipe.Builder for the given {@link ItemConvertible}
+         * @param targetItem The item to create a PCShapelessRecipe for.
+         */
+        public static Builder createFor(ItemConvertible targetItem) {
+            CheckUtils.checkIsNullThenThrow(
+                targetItem, "Target Item cannot be null when creating PCShapelessRecipe.Builder"
+            );
+            Builder builder = new Builder();
+            builder.targetItem = targetItem;
+            return builder;
+        }
+
+        /**
+         * Set the recipe category.
+         * @param category The category of the recipe.
+         */
         public Builder category(RecipeCategory category) {
             CheckUtils.checkIsNullThenThrow(
                 category, "Recipe Category cannot be null when using PCShapelessRecipe.Builder"
@@ -87,6 +140,10 @@ public class PCShapelessRecipe
             return this;
         }
 
+        /**
+         * Add an ingredient to the recipe.
+         * @param ingredient The ingredient to add.
+         */
         public Builder input(Ingredient ingredient) {
             CheckUtils.checkIsNullThenThrow(
                 ingredient, "Ingredient cannot be null when using PCShapelessRecipe.Builder"
@@ -95,6 +152,10 @@ public class PCShapelessRecipe
             return this;
         }
 
+        /**
+         * Add multiple ingredients to the recipe.
+         * @param ingredients The ingredients to add.
+         */
         public Builder input(Ingredient... ingredients) {
             List<Ingredient> ingredientList = Arrays.asList(ingredients);
             CheckUtils.checkAnyIsNullThenThrow(
@@ -106,6 +167,10 @@ public class PCShapelessRecipe
             return this;
         }
 
+        /**
+         * Add an item to the recipe.
+         * @param item The item to add.
+         */
         public Builder input(ItemConvertible item) {
             CheckUtils.checkIsNullThenThrow(
                 item, "Item cannot be null when using PCShapelessRecipe.Builder"
@@ -115,6 +180,10 @@ public class PCShapelessRecipe
             return this;
         }
 
+        /**
+         * Add multiple items to the recipe.
+         * @param items The items to add.
+         */
         public Builder input(ItemConvertible... items) {
             List<Ingredient> itemList = Arrays.stream(items)
                 .map(Ingredient::ofItem)
@@ -127,6 +196,10 @@ public class PCShapelessRecipe
             return this;
         }
 
+        /**
+         * Add a list of items to the recipe.
+         * @param items The list of items to add.
+         */
         public Builder input(List<ItemConvertible> items) {
             CheckUtils.checkAnyIsNullThenThrow(
                 Collections.singletonList(items), "Items cannot be null when using PCShapelessRecipe.Builder"
@@ -139,6 +212,10 @@ public class PCShapelessRecipe
             return this;
         }
 
+        /**
+         * Add A class of items to the recipe.
+         * @param tag The class of the item.
+         */
         public Builder input(TagKey<Item> tag) {
             CheckUtils.checkIsNullThenThrow(
                 tag, "Tag cannot be null when using PCShapelessRecipe.Builder"
@@ -147,11 +224,20 @@ public class PCShapelessRecipe
             return this;
         }
 
+        /**
+         * The count of the target item
+         * @param count The count of the target item.
+         */
         public Builder count(int count) {
             this.count = count;
             return this;
         }
 
+        /**
+         * Add a criterion to the recipe.
+         * @param criterionName The name of the criterion.
+         * @param item The item which the criterion needs.
+         */
         public Builder criterion(String criterionName, Item item) {
             CheckUtils.checkIsNullThenThrow(
                 criterionName, "Criterion Name cannot be null when using PCShapelessRecipe.Builder"
@@ -164,6 +250,9 @@ public class PCShapelessRecipe
             return this;
         }
 
+        /**
+         * Build the PCShapelessRecipe.
+         */
         public PCShapelessRecipe build() {
             if (this.criteria.isEmpty())
                 throw new IllegalArgumentException(

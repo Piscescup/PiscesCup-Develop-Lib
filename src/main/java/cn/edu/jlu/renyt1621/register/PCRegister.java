@@ -88,7 +88,7 @@ public abstract class PCRegister<T, R extends PCRegister<T, R>> {
      * </p>
      *
      * <p>
-     *     Use the method{@link #registerAndBuild()} before using this method.
+     *     Use the method {@link #registerAndBuild()} before using this method.
      * </p>
      * @param lang the language to translate.
      * @param value the string after translation.
@@ -114,7 +114,7 @@ public abstract class PCRegister<T, R extends PCRegister<T, R>> {
     }
 
     /**
-     * This method can add the thing to a {@link List}
+     * This method can add the thing to a {@link List}.
      *
      * You should implement the method {@link #self()} before using this method.
      * @param list The list, which thing will be added to.

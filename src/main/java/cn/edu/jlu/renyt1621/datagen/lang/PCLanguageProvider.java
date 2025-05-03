@@ -1,5 +1,6 @@
 package cn.edu.jlu.renyt1621.datagen.lang;
 
+import cn.edu.jlu.renyt1621.datagen.factories.PCLanguageProviderFactory;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
@@ -25,6 +26,11 @@ import java.util.concurrent.CompletableFuture;
 import static cn.edu.jlu.renyt1621.References.MOD_LOGGER;
 
 /**
+ * <p>
+ *     A provider for generating language files.
+ * </p>
+ *
+ * @see PCLanguageProviderFactory
  * @author REN YuanTong
  * @Date 2025-04-12
  * @since 1.0.0

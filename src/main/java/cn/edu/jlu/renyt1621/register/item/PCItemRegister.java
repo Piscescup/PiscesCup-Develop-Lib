@@ -1,6 +1,5 @@
 package cn.edu.jlu.renyt1621.register.item;
 
-import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
 import cn.edu.jlu.renyt1621.datagen.models.maps.PCItemModelMap;
 import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapedRecipeMap;
 import cn.edu.jlu.renyt1621.datagen.recipes.maps.PCShapelessRecipeMap;

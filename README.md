@@ -26,6 +26,8 @@ Otherwise, an `IllegalArgumentException` will be thrown.
 
 
 #### Item
+Portal: [PCItemRegister](src/main/java/cn/edu/jlu/renyt1621/register/item/PCItemRegister.java)
+
 You can use the class `PCItemRegister.java` and 
 `PCBlockItemRegister.java` to register items and block items.
 
@@ -93,6 +95,8 @@ public static final Item BLOCK_ITEM = PCBlockItemRegister.create(BLOCK)
 
 
 #### Blocks
+Portal: [PCBlockRegister](src/main/java/cn/edu/jlu/renyt1621/register/block/PCBlockRegister.java)
+
 You can use the class `PCBlockRegister.java` to register blocks.
 
 Below are some examples:
@@ -111,6 +115,8 @@ public static final Block BLOCK = PCBlockRegister.create(MOD_ID, "block1")
 ```
 
 #### Item Groups
+Portal: [PCItemGroupRegister](src/main/java/cn/edu/jlu/renyt1621/register/itemgroup/PCItemGroupRegister.java)
+
 You can use the class `PCItemGroupRegister.java` to register item groups.
 
 Below are some examples:
@@ -132,6 +138,8 @@ public static final ItemGroup ITEM_GROUP1 = PCItemGroupRegister.create(MOD_ID, "
 ```
 
 #### Tags
+Portal: [PCItemTagKeyRegister](src/main/java/cn/edu/jlu/renyt1621/register/tag/PCItemTagKeyRegister.java)
+
 The mod provides ways to register `ItemTag` and `BlockTag` 
 by using the class `PCItemTagKeyRegister.java` and `PCBlockTagKeyRegister.java`.
 
@@ -174,6 +182,10 @@ public static final TagKey<Block> VANILLA_PICKAXE_TAG =
 ```
 
 #### Recipes
+Portal: [PCShapedRecipe](src/main/java/cn/edu/jlu/renyt1621/datagen/recipes/craft/PCShapedRecipe.java) 
+& [PCShapelessRecipe](src/main/java/cn/edu/jlu/renyt1621/datagen/recipes/craft/PCShapelessRecipe.java)
+
+
 The mod provides `PCShapedRecipe.java` and `PCShapelessRecipe.java` to set the recipes for the item.
 
 Below are some usages:
@@ -219,6 +231,10 @@ in the class `PCBlockRegister.java` to set the cube all model of the block.
 The mod provides some `DataProviderFactory` to get the data providers.
 
 #### Language Provider
+Portal: [PCLanguageProvider](src/main/java/cn/edu/jlu/renyt1621/datagen/lang/PCLanguageProvider.java)
+ & [PCLanguageProviderFactory](src/main/java/cn/edu/jlu/renyt1621/datagen/factories/PCLanguageProviderFactory.java)
+
+
 The mod provides the class `PCTranslationProviderFactory.java` to get the translation provider.
 
 Use the `PCLanguageProviderFactory.java` to get specific language provider:
@@ -262,6 +278,10 @@ public class PiscesCupDevelopLibDataGenerator
 ```
 
 #### Model Provider
+Portal: [PCModelProvider](src/main/java/cn/edu/jlu/renyt1621/datagen/models/PCModelProvider.java)
+& [PCModelProviderFactory](src/main/java/cn/edu/jlu/renyt1621/datagen/factories/PCModelProviderFactory.java)
+
+
 The mod provides the class `PCModelProviderFactory.java` to get the model provider.
 
 Use the `PCModelProviderFactory.java` to get specific model provider:
@@ -285,6 +305,10 @@ public class PiscesCupDevelopLibDataGenerator
 ```
 
 #### Recipe Provider
+Portal: [PCRecipeProvider](src/main/java/cn/edu/jlu/renyt1621/datagen/recipes/PCRecipeProvider.java)
+ & [PCRecipesProviderFactory](src/main/java/cn/edu/jlu/renyt1621/datagen/factories/PCRecipesProviderFactory.java)
+
+
 The mod provides the class `PCRecipeProviderFactory.java` to get the recipe provider.
 
 Use the `PCRecipeProviderFactory.java` to get specific recipe provider:
@@ -306,6 +330,11 @@ public class PiscesCupDevelopLibDataGenerator implements DataGeneratorEntrypoint
 ```
 
 #### Tag Provider
+Portal: [PCBlockTagProviderFactory](src/main/java/cn/edu/jlu/renyt1621/datagen/tag/PCBlockTagProvider.java)
+ & [PCTagProviderFactory](src/main/java/cn/edu/jlu/renyt1621/datagen/factories/PCTagProviderFactory.java)
+
+
+
 The mod provides an enum class: `PCTagProviderFactory.java`. Its fields are the tag providers.
 
 The method `factories()` of the fields can return a list of 
