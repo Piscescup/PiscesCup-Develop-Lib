@@ -381,6 +381,7 @@ public class PiscesCupDevelopLibDataGenerator
 ## Contact
 If you have some bugs or suggestions, you can contact me by the following ways:
 - [Github Issue](https://github.com/Piscescup/PiscesCup-Develop-Lib/issues)
-- Emails
+- Emails:
   - piscescup@outlook.com
+  - renyt1621@mails.jlu.edu.cn
   - piscescup@qq.com
