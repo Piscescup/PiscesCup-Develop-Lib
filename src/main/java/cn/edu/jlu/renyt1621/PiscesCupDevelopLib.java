@@ -20,10 +20,10 @@ public class PiscesCupDevelopLib implements ModInitializer {
 		MOD_LOGGER.info("Hello Fabric world!");
 		MOD_LOGGER.info("Hello, " + MOD_NAME);
 
-		ModItems.register();
-		ModBlocks.register();
-		ModItemGroups.register();
-		ModTags.register();
+		// ModItems.register();
+		// ModBlocks.register();
+		// ModItemGroups.register();
+		// ModTags.register();
 
 
 	}

@@ -2,6 +2,7 @@ package cn.edu.jlu.renyt1621.register;
 
 
 import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
+import cn.edu.jlu.renyt1621.datagen.lang.map.LangMap;
 import cn.edu.jlu.renyt1621.utils.constant.Language;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
@@ -98,7 +99,7 @@ public abstract class PCRegister<T, R extends PCRegister<T, R>> {
     public R translate(Language lang, String value){
         checkNotNull("translate(Language, String)");
 
-        PCLanguageProvider.LangMap.instance().put(lang, this.t, value);
+        LangMap.instance().put(lang, this.t, value);
 
         return self();
     }

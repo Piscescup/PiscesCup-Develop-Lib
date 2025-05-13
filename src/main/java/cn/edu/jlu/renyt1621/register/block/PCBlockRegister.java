@@ -1,6 +1,7 @@
 package cn.edu.jlu.renyt1621.register.block;
 
 import cn.edu.jlu.renyt1621.datagen.lang.PCLanguageProvider;
+import cn.edu.jlu.renyt1621.datagen.lang.map.LangMap;
 import cn.edu.jlu.renyt1621.datagen.loot.drop.PCBlockDrop;
 import cn.edu.jlu.renyt1621.datagen.loot.map.PCBlockDropMap;
 import cn.edu.jlu.renyt1621.datagen.loot.map.PCSilkTouchDropMap;
@@ -208,7 +209,7 @@ public class PCBlockRegister
     public PCBlockRegister translate(Language lang, String value) {
         checkNotNull("translate(Language, String)");
 
-        PCLanguageProvider.LangMap.instance().put(lang, this.t, value);
+        LangMap.instance().put(lang, this.t, value);
 
         return this;
     }

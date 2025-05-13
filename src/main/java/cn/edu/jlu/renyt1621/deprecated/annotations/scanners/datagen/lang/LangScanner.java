@@ -1,5 +1,6 @@
 package cn.edu.jlu.renyt1621.deprecated.annotations.scanners.datagen.lang;
 
+import cn.edu.jlu.renyt1621.datagen.lang.map.LangMap;
 import cn.edu.jlu.renyt1621.deprecated.annotations.lang.Langs;
 import cn.edu.jlu.renyt1621.deprecated.annotations.scanners.DataGenScanner;
 import cn.edu.jlu.renyt1621.deprecated.annotations.scanners.ScannerPackages;
@@ -22,7 +23,7 @@ import java.util.Arrays;
 public class LangScanner
     implements DataGenScanner<Langs>
 {
-    private final PCLanguageProvider.LangMap LANGS_MAP = PCLanguageProvider.LangMap.instance();
+    private final LangMap LANGS_MAP = LangMap.instance();
 
 
     /**

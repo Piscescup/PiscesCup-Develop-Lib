@@ -1,7 +1,7 @@
 # PiscesCup Develop Library
 
 ## Description
-The mod provides some convenient methods for developers, 
+The lib provides some convenient methods for developers, 
 such as:
    - **Registering**: registering items, blocks, item groups, and tags, and so on. 
     You can set the recipes and simple models when you register them.
@@ -11,6 +11,54 @@ such as:
 
 The examples are in the 
 [Examples Folder](src/main/java/cn/edu/jlu/renyt1621/tests).
+
+## Install
+#### Gradle
+Add below code in the `dependencies` part of your `build.gradle` file:
+```groovy
+dependencies {
+    // Add this to the dependencies
+    include(modImplementation("io.github.piscescup:pc_develop_lib:1.0.0"))
+}
+```
+To update the version easily, you can use below way:
+```groovy
+dependencies {
+    include(
+        modImplementation("io.github.piscescup:pc_develop_lib:${pc_dev_lib_version}")
+    )
+}
+```
+And then add the property (The name of the property is up to you) in the `gradle.properties` file:
+```properties
+pc_dev_lib_version=1.0.1
+```
+
+
+#### ~~Maven~~
+Add below code in the `dependencies` mark of your `pom.xml` file:
+```xml
+<dependency>
+  <groupId>io.github.piscescup</groupId>
+  <artifactId>pc_develop_lib</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+To update the version easily, you can use below way:
+```xml
+<dependency>
+  <groupId>io.github.piscescup</groupId>
+  <artifactId>pc_develop_lib</artifactId>
+  <version>${pc_dev_lib_version}</version>
+</dependency>
+```
+And then add a property mark (The name of the property mark is up to you) in the `properties` mark of your `pom.xml` file:
+```xml
+<properties>
+    <pc_dev_lib_version>1.0.1</pc_dev_lib_version>
+</properties>
+```
+
 
 ## Usage
 ### Registering
@@ -380,7 +428,7 @@ public class PiscesCupDevelopLibDataGenerator
 
 ## Contact
 If you have some bugs or suggestions, you can contact me by the following ways:
-- [Github Issue](https://github.com/Piscescup/PiscesCup-Develop-Lib/issues)
+- [GitHub Issue](https://github.com/Piscescup/PiscesCup-Develop-Lib/issues)
 - Emails:
   - piscescup@outlook.com
   - renyt1621@mails.jlu.edu.cn
