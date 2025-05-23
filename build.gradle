@@ -1,8 +1,13 @@
 plugins {
-	id 'fabric-loom' version '1.10-SNAPSHOT'
+	id 'fabric-loom' version '1.10.5'
 	id 'maven-publish'
+	id 'org.jreleaser' version '1.18.0'
 	id 'signing'
+	id 'java-library'
+	id "tech.medivh.plugin.publisher" version "1.2.3"
 }
+
+
 
 version = project.mod_version
 group = project.maven_group
@@ -17,12 +22,17 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	mavenCentral()
+	maven {
+		url 'https://plugins.gradle.org/m2/'
+	}
 }
 
 fabricApi {
 	configureDataGeneration {
 		client = true
 	}
+
 }
 
 dependencies {
@@ -38,6 +48,50 @@ dependencies {
 	include(implementation("io.github.classgraph:classgraph:4.8.179"))
 }
 
+
+javadoc {
+	options.memberLevel = JavadocMemberLevel.PROTECTED
+	options.author = true
+	options.version = true
+	options.header = project.name
+	options.addStringOption('Xdoclint:none', '-quiet')
+
+	options.addStringOption("charset", "UTF-8")
+	// suppress warnings due to cross-module @see and @link references;
+	// note that global 'api' task does display all warnings.
+	logging.captureStandardError LogLevel.INFO
+	// suppress "## warnings" message
+	logging.captureStandardOutput LogLevel.INFO
+	options.encoding = "UTF-8"
+	options.charSet = "UTF-8"
+}
+
+java {
+	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+	// if it is present.
+	// If you remove this line, sources will not be generated.
+	withSourcesJar()
+	withJavadocJar()
+
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+
+
+tasks.withType(AbstractArchiveTask).configureEach { jarTask ->
+
+	jarTask.doLast{
+		def file = jarTask.archiveFile.get().asFile
+		if (file.exists()) {
+			ant.checksum(algorithm: 'md5', file: file)
+			ant.checksum(algorithm: 'sha1', file: file)
+		} else {
+			logger.warn("Checksum skipped: ${file} does not exist")
+		}
+	}
+}
+
 processResources {
 	inputs.property "version", project.version
 
@@ -50,15 +104,7 @@ tasks.withType(JavaCompile).configureEach {
 	it.options.release = 21
 }
 
-java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-	// if it is present.
-	// If you remove this line, sources will not be generated.
-	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
-}
 
 jar {
 	inputs.property "archivesName", project.base.archivesName
@@ -72,20 +118,57 @@ jar {
 publishing {
 	publications {
 		create("mavenJava", MavenPublication) {
+			groupId = project.maven_group
 			artifactId = project.archives_base_name
-			from components.java
+			version = project.mod_version
+			from(components["java"])
+
+			artifact(remapJar) {
+				builtBy remapJar
+			}
+			artifact(sourcesJar) {
+				builtBy sourcesJar
+			}
+
+			pom {
+				name = "PiscesCup Develop Lib"
+				description = "The lib provides some convenient methods for developers"
+				url = "https://github.com/Piscescup/PiscesCup-Develop-Lib/"
+				licenses {
+					license {
+						name = "CC0 1.0 Universal"
+						url = "https://opensource.org/licenses/MIT"
+					}
+				}
+				developers {
+					developer {
+						id = "piscescup"
+						name = "PiscesCup"
+						email= "piscescup@outlook.com"
+					}
+				}
+				scm {
+					connection= "scm:git:https://github.com/Piscescup/PiscesCup-Develop-Lib.git"
+					developerConnection= "scm:git:https://github.com/Piscescup/PiscesCup-Develop-Lib.git"
+					url= "https://github.com/Piscescup/PiscesCup-Develop-Lib"
+				}
+			}
 		}
 	}
 
 	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
 	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
+		maven {
+			name = "LocalMavenWithChecksums"
+			url = uri(layout.buildDirectory.dir("staging-deploy"))
+		}
+
+		maven {
+			name = "PreDeploy"
+			url = uri(layout.buildDirectory.dir("pre-deploy"))
+		}
 	}
 }
-
 test {
 	useJUnitPlatform()
 }

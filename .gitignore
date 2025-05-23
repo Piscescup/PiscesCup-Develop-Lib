@@ -5,6 +5,12 @@ build/
 out/
 classes/
 
+
+
+# secrets
+.gnupg
+jreleaser_keys
+
 # eclipse
 
 *.launch
