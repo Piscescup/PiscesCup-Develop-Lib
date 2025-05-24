@@ -20,8 +20,6 @@ import static cn.edu.jlu.renyt1621.References.MOD_ID;
  * @Date 2025-05-20
  */
 public final class ModAdvancements {
-    public static final List<AdvancementTabGenerator> TAB_LIST = new ArrayList<>();
-
     public static final PCAdvancement PC_TEST_ADVANCEMENT1 =
         PCAdvancement.of(Identifier.of(MOD_ID, "pc_test_advancement1"), "pc_test_advancement1")
             .icon(ModItems.PC_ITEM1)
@@ -48,4 +46,6 @@ public final class ModAdvancements {
             .rewards(AdvancementRewards.Builder.experience(200000))
             .get();
 
+
+    public static void register() {}
 }

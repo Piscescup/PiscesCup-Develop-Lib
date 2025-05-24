@@ -15,10 +15,10 @@ import java.util.function.Consumer;
  * @author REN YuanTong
  * @Date 2025-05-22
  */
-public class ModTabAdvancement
+public final class ModTabAdvancement
     extends PCAdvancementTabGenerator
 {
-
+    public ModTabAdvancement() {}
 
     @Override
     public void accept(RegistryWrapper.WrapperLookup registries, Consumer<AdvancementEntry> exporter) {

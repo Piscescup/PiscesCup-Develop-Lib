@@ -1,5 +1,6 @@
 package cn.edu.jlu.renyt1621;
 
+import cn.edu.jlu.renyt1621.tests.advancements.ModAdvancements;
 import cn.edu.jlu.renyt1621.tests.blocks.ModBlocks;
 import cn.edu.jlu.renyt1621.tests.itemgroups.ModItemGroups;
 import cn.edu.jlu.renyt1621.tests.items.ModItems;
@@ -24,7 +25,7 @@ public class PiscesCupDevelopLib implements ModInitializer {
 		ModBlocks.register();
 		ModItemGroups.register();
 		ModTags.register();
-
+		ModAdvancements.register();
 
 	}
 }

@@ -35,7 +35,7 @@ pc_dev_lib_version=1.0.1
 ```
 
 
-#### ~~Maven~~
+#### ~~Maven (Deprecated)~~
 Add below code in the `dependencies` mark of your `pom.xml` file:
 ```xml
 <dependency>

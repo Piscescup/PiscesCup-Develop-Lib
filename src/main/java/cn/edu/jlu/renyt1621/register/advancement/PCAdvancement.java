@@ -46,7 +46,19 @@ import java.util.function.UnaryOperator;
  * </pre></blockquote>
  * And then you can use this in the {@code DataGenerator} file provided by {@code Fabric}:
  * <blockquote><pre>
- *
+ * public class PiscesCupDevelopLibDataGenerator
+ *     implements DataGeneratorEntrypoint
+ * {
+ *     &#64;Override
+ *     public void onInitializeDataGenerator(FabricDataGenerator generator) {
+ *         FabricDataGenerator.Pack pack = generator.createPack();
+ *         PCAdvancementProviderFactory.createFor(
+ *         	   PCAdvancementTabContainer.instance()
+ *         		   .addAdvancementTab(ModTabAdvancement::new)
+ *         )
+ *             .forEach(pack::addProvider);
+ *     }
+ * }
  * </pre></blockquote>
  *
  *
