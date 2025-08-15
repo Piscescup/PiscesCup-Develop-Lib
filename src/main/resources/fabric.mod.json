@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"cn.edu.jlu.renyt1621.PiscesCupDevelopLib"
+          "io.github.piscescup.mc.fabric.PiscesCupDevelopLib"
 		],
 		"fabric-datagen": [
-			"cn.edu.jlu.renyt1621.PiscesCupDevelopLibDataGenerator"
+          "io.github.piscescup.mc.fabric.PiscesCupDevelopLibDataGenerator"
 		]
 	},
 	"mixins": [
