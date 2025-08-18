@@ -1,6 +1,7 @@
 package io.github.piscescup.mc.fabric.register.villager.profession;
 
 import io.github.piscescup.mc.fabric.register.PostRegisterConfig;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.village.VillagerProfession;
 
 /**
@@ -13,7 +14,7 @@ import net.minecraft.village.VillagerProfession;
  * @since 1.1.2
  */
 public interface VillagerProfessionPostRegisterConfig
-    extends PostRegisterConfig<VillagerProfessionPostRegisterConfig, VillagerProfession, PCVillagerProfessionRegister>
+    extends PostRegisterConfig<VillagerProfessionPostRegisterConfig, RegistryKey<VillagerProfession>, PCVillagerProfessionRegister>
 {
 
 }

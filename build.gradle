@@ -43,11 +43,6 @@ dependencies {
 
 	include(implementation("org.reflections:reflections:0.10.2"))
 	include(implementation("io.github.classgraph:classgraph:4.8.179"))
-
-	modImplementation "io.github.revxrsal:lamp.common:${lamp_version}"
-	modImplementation "io.github.revxrsal:lamp.fabric:${lamp_version}"
-	modImplementation "io.github.revxrsal:lamp.brigadier:${lamp_version}"
-
 }
 
 

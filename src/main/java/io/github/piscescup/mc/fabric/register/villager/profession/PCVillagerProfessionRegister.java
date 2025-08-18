@@ -8,8 +8,10 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.poi.PointOfInterestType;
@@ -74,7 +76,7 @@ import static io.github.piscescup.mc.fabric.References.MOD_LOGGER;
  * @since 1.1.0
  */
 public final class PCVillagerProfessionRegister
-    extends PCRegister<VillagerProfession, PCVillagerProfessionRegister, VillagerProfessionPostRegisterConfig>
+    extends PCRegister<RegistryKey<VillagerProfession>, PCVillagerProfessionRegister, VillagerProfessionPostRegisterConfig>
     implements VillagerProfessionPreRegisterConfig.WorkStationConfig, VillagerProfessionPreRegisterConfig.OptionalConfig, VillagerProfessionPostRegisterConfig
 {
     private Predicate<RegistryEntry<PointOfInterestType>> heldWorkstation;
@@ -89,27 +91,21 @@ public final class PCVillagerProfessionRegister
     }
 
     @Contract("_ -> new")
-    public static @NotNull VillagerProfessionPreRegisterConfig.WorkStationConfig createFor(String path) {
-        return new PCVillagerProfessionRegister(Identifier.of(path));
-    }
-
-    @Contract("_, _ -> new")
-    public static @NotNull VillagerProfessionPreRegisterConfig.WorkStationConfig createFor(String namespace, String path) {
-        return new PCVillagerProfessionRegister(Identifier.of(namespace, path));
-    }
-
-    @Contract("_ -> new")
-    public static @NotNull VillagerProfessionPreRegisterConfig.WorkStationConfig createFor(Identifier identifier) {
-        return new PCVillagerProfessionRegister(identifier);
+    public static @NotNull VillagerProfessionPreRegisterConfig.WorkStationConfig createFor(String professionName) {
+        return new PCVillagerProfessionRegister(Identifier.ofVanilla(professionName));
     }
 
     @Override
     public VillagerProfessionPostRegisterConfig registerAndBuild() {
-        this.targetRegistered = Registry.register(
+        this.targetRegistered = RegistryKey.of(
+            RegistryKeys.VILLAGER_PROFESSION,
+            this.id
+        );
+        Registry.register(
             Registries.VILLAGER_PROFESSION,
             this.id,
             new VillagerProfession(
-                this.id().toString(),
+                Text.translatable("entity.minecraft.villager." + this.key.getValue().getPath()),
                 this.heldWorkstation,
                 this.acquirableWorkstation,
                 this.gatherableItems,

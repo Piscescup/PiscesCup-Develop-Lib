@@ -2,13 +2,15 @@ package io.github.piscescup.mc.fabric.register.item;
 
 import io.github.piscescup.mc.fabric.datagen.factories.PCModelProviderFactory;
 import io.github.piscescup.mc.fabric.datagen.models.maps.PCItemModelMap;
+import io.github.piscescup.mc.fabric.register.PCRegister;
 import io.github.piscescup.mc.fabric.register.recipe.PCShapedRecipe;
 import io.github.piscescup.mc.fabric.register.recipe.PCShapelessRecipe;
-import io.github.piscescup.mc.fabric.register.PCRegister;
 import net.minecraft.client.data.Model;
-import net.minecraft.data.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.equipment.ArmorMaterial;
+import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -18,6 +20,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 /**
  * <h1>Description</h1>
@@ -59,7 +62,7 @@ public final class PCItemRegister
 {
     private Item.Settings settings = new Item.Settings();
     private Function<Item.Settings, Item> factory = Item::new;
-    private ShapedRecipeJsonBuilder builder;
+    private UnaryOperator<Item.Settings> postProcessSettings = settings -> settings;
 
 
     private PCItemRegister(Identifier id) {
@@ -81,7 +84,9 @@ public final class PCItemRegister
      */
     @Override
     public ItemPostRegisterConfig<PCItemRegister> registerAndBuild() {
-        Item item = factory.apply(settings.registryKey(this.key));
+        Item.Settings newSettings = this.postProcessSettings.apply(settings);
+
+        Item item = factory.apply(newSettings.registryKey(this.key));
 
         if ( item instanceof BlockItem blockItem )
             blockItem.appendBlocks(Item.BLOCK_ITEMS, item);
@@ -89,7 +94,6 @@ public final class PCItemRegister
         this.targetRegistered = Registry.register(Registries.ITEM, key, item);
         return this;
     }
-
 
     /**
      * <p>
@@ -123,6 +127,186 @@ public final class PCItemRegister
         return new PCItemRegister(identifier);
     }
 
+    public static ItemPreRegisterConfig<PCItemRegister> createSwordItem(
+        String namespace, String path,
+        ToolMaterial material, float attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(Identifier.of(namespace, path));
+        pcItemRegister.postProcessSettings = settings ->
+            settings.sword(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createPickaxeItem(
+        String namespace, String path,
+        ToolMaterial material, int attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(Identifier.of(namespace, path));
+        pcItemRegister.postProcessSettings = settings ->
+            settings.pickaxe(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createAxeItem(
+        String namespace, String path,
+        ToolMaterial material, int attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(Identifier.of(namespace, path));
+        pcItemRegister.postProcessSettings = settings ->
+            settings.axe(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createShovelItem(
+        String namespace, String path,
+        ToolMaterial material, float attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(Identifier.of(namespace, path));
+        pcItemRegister.postProcessSettings = settings ->
+            settings.shovel(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createHoeItem(
+        String namespace, String path,
+        ToolMaterial material, float attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(Identifier.of(namespace, path));
+        pcItemRegister.postProcessSettings = settings ->
+            settings.hoe(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createArmorItem(
+        String namespace, String path,
+        ArmorMaterial material, EquipmentType type
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(Identifier.of(namespace, path));
+        pcItemRegister.postProcessSettings = settings ->
+            settings.armor(material, type);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createSwordItem(
+        String fullPath,
+        ToolMaterial material, float attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(Identifier.tryParse(fullPath));
+        pcItemRegister.postProcessSettings = settings ->
+            settings.sword(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createPickaxeItem(
+        String fullPath,
+        ToolMaterial material, int attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(Identifier.tryParse(fullPath));
+        pcItemRegister.postProcessSettings = settings ->
+            settings.pickaxe(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createAxeItem(
+        String fullPath,
+        ToolMaterial material, int attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(Identifier.tryParse(fullPath));
+        pcItemRegister.postProcessSettings = settings ->
+            settings.axe(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createShovelItem(
+        String fullPath,
+        ToolMaterial material, float attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(Identifier.tryParse(fullPath));
+        pcItemRegister.postProcessSettings = settings ->
+            settings.shovel(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createHoeItem(
+        String fullPath,
+        ToolMaterial material, float attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(Identifier.tryParse(fullPath));
+        pcItemRegister.postProcessSettings = settings ->
+            settings.hoe(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createArmorItem(
+        String fullPath,
+        ArmorMaterial material, EquipmentType type
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(Identifier.tryParse(fullPath));
+        pcItemRegister.postProcessSettings = settings ->
+            settings.armor(material, type);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createSwordItem(
+        Identifier id,
+        ToolMaterial material, float attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(id);
+        pcItemRegister.postProcessSettings = settings ->
+            settings.sword(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createPickaxeItem(
+        Identifier id,
+        ToolMaterial material, int attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(id);
+        pcItemRegister.postProcessSettings = settings ->
+            settings.pickaxe(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createAxeItem(
+        Identifier id,
+        ToolMaterial material, int attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(id);
+        pcItemRegister.postProcessSettings = settings ->
+            settings.axe(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createShovelItem(
+        Identifier id,
+        ToolMaterial material, float attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(id);
+        pcItemRegister.postProcessSettings = settings ->
+            settings.shovel(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createHoeItem(
+        Identifier id,
+        ToolMaterial material, float attackDamage, float attackSpeed
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(id);
+        pcItemRegister.postProcessSettings = settings ->
+            settings.hoe(material, attackDamage, attackSpeed);
+        return pcItemRegister;
+    }
+
+    public static ItemPreRegisterConfig<PCItemRegister> createArmorItem(
+        Identifier id,
+        ArmorMaterial material, EquipmentType type
+    ) {
+        PCItemRegister pcItemRegister = new PCItemRegister(id);
+        pcItemRegister.postProcessSettings = settings ->
+            settings.armor(material, type);
+        return pcItemRegister;
+    }
+
     /**
      * <p>
      * Sets the item settings configuration.
@@ -142,7 +326,6 @@ public final class PCItemRegister
         return this;
     }
 
-
     /**
      * <p>
      *     Specifies a custom factory for item creation.
@@ -159,7 +342,6 @@ public final class PCItemRegister
         this.factory = factory;
         return this;
     }
-
 
     /**
      * <p>
@@ -179,39 +361,12 @@ public final class PCItemRegister
         return this;
     }
 
-    /**
-     * <p>
-     *     Provide a shaped recipe for the item.
-     * </p>
-     *
-     * <p>
-     *     The recipe will be added to the {@link PCShapedRecipeMap}.<br>
-     *     Use the class {@link PCRecipeProviderFactory} to generate the recipe.
-     * </p>
-     * @param shapedRecipe The shaped recipe to add
-     * @return This item register
-     */
-
     @Deprecated
     public ItemPostRegisterConfig<PCItemRegister> shapedRecipe(@NotNull PCShapedRecipe shapedRecipe) {
         // PCShapedRecipeMap.instance().put(shapedRecipe, this.targetRegistered);
         return this;
     }
 
-    /**
-     * <p>
-     *     Provide a shapeless recipe for the item.
-     * </p>
-     *
-     * <p>
-     *     The recipe will be added to the {@link PCShapelessRecipeMap}.<br>
-     *     Use the class {@link PCRecipeProviderFactory} to generate the recipe.
-     * </p>
-     *
-     * @param shapelessRecipe The shapeless recipe of the item
-     * @return This item register
-     * @see PCRecipeProviderFactory
-     */
     @Deprecated
     public ItemPostRegisterConfig<PCItemRegister> shapelessRecipe(@NotNull PCShapelessRecipe shapelessRecipe) {
         // PCShapelessRecipeMap.instance().put(shapelessRecipe, this.targetRegistered);

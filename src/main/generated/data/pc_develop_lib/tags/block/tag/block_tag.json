@@ -1,9 +1,0 @@
-{
-  "values": [
-    "pc_develop_lib:block1",
-    {
-      "id": "#minecraft:logs",
-      "required": false
-    }
-  ]
-}

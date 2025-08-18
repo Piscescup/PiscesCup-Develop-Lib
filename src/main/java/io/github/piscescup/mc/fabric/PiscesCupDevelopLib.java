@@ -23,5 +23,5 @@ public class PiscesCupDevelopLib implements ModInitializer {
             MOD_VERSION,
             MC_VERSION
         );
-	}
+    }
 }

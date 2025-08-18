@@ -167,6 +167,13 @@ public final class PCItemGroupRegister
 
     @Override
     public ItemGroupPostRegisterConfig registerAndBuild() {
+        if (this.items.isEmpty()) {
+            MOD_LOGGER.warn(
+                "The Item Group {} does not have any items to show. So this Item Group may be not displayed.",
+                this.key
+            );
+        }
+
         this.translateKey = Util.createTranslationKey("itemGroup", this.id);
         this.builder
             .icon(iconSupplier)

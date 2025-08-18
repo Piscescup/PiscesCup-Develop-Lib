@@ -87,12 +87,23 @@ public class PCLanguageProvider
                     }
                 else if ( o instanceof String key )
                     translationBuilder.add(key, s);
-                else if ( o instanceof VillagerProfession profession)
-                    translationBuilder.add(
-                        "entity.minecraft.villager." + Identifier.of(profession.id()).getPath(),
-                        s
-                    );
-
+                else if ( o instanceof VillagerProfession profession) {
+                    TextContent professionName = profession.id().getContent();
+                    if (professionName instanceof TranslatableTextContent translatableName) {
+                        translationBuilder.add(translatableName.getKey(), s);
+                    } else {
+                        MOD_LOGGER.info(
+                            "The villager profession {} can not be translated." ,
+                            professionName
+                        );
+                        throw new UnsupportedOperationException(
+                            String.format(
+                                "The villager profession %s can not be translated." ,
+                                professionName
+                            )
+                        );
+                    }
+                }
             }
         );
     }

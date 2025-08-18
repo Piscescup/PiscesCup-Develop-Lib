@@ -2,6 +2,7 @@ package io.github.piscescup.mc.fabric.register.villager;
 
 import io.github.piscescup.mc.fabric.register.PCRegister;
 import io.github.piscescup.mc.fabric.register.villager.trade.PCTradeOfferBuilder;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.poi.PointOfInterestType;
 import org.jetbrains.annotations.NotNull;
@@ -67,13 +68,12 @@ public final class PCVillagerRegister
     implements VillagerPreRegisterConfig, VillagerPostRegisterConfig
 {
     private PCTradeOfferBuilder trades;
-    private PointOfInterestType poi;
 
-    private PCVillagerRegister(VillagerProfession profession) {
-        this.targetRegistered = profession;
+    private PCVillagerRegister(RegistryKey<VillagerProfession> profession) {
+        this.key = profession;
     }
 
-    public static VillagerPreRegisterConfig createFor(@NotNull VillagerProfession profession) {
+    public static VillagerPreRegisterConfig createFor(@NotNull RegistryKey<VillagerProfession> profession) {
         Objects.requireNonNull(profession, "profession");
         return new PCVillagerRegister(profession);
     }
@@ -87,7 +87,7 @@ public final class PCVillagerRegister
 
     @Override
     public VillagerPostRegisterConfig registerAndBuild() {
-        trades.applyToProfession(this.targetRegistered);
+        trades.applyToProfession(this.key);
         return this;
     }
 

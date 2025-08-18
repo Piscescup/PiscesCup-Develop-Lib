@@ -18,7 +18,7 @@ public final class References {
 
     public static final String ORIGIN_MOD_VERSION = "1.0.0";
 
-    public static final String MC_VERSION = "1.21.4";
+    public static final String MC_VERSION = "1.21.5";
 
     public static final Logger MOD_LOGGER = LogManager.getLogger(MOD_ID);
 

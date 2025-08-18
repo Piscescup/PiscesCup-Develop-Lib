@@ -7,5 +7,5 @@ public class PiscesCupDevelopLibDataGenerator implements DataGeneratorEntrypoint
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 
-	}
+    }
 }

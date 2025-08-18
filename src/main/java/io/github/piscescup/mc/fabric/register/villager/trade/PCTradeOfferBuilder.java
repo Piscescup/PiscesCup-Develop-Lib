@@ -3,6 +3,7 @@ package io.github.piscescup.mc.fabric.register.villager.trade;
 import io.github.piscescup.mc.fabric.register.villager.PCVillagerRegister;
 import io.github.piscescup.mc.fabric.utils.CheckUtils;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
 import org.jetbrains.annotations.NotNull;
@@ -151,7 +152,7 @@ public class PCTradeOfferBuilder
      * @see PCVillagerRegister
      * @throws NullPointerException If the {@code profession} is null.
      */
-    public void applyToProfession(@NotNull VillagerProfession profession) {
+    public void applyToProfession(@NotNull RegistryKey<VillagerProfession> profession) {
         Objects.requireNonNull(profession, "profession");
         offers.forEach(
             (level, offers) -> TradeOfferHelper.registerVillagerOffers(
